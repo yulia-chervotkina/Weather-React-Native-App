@@ -6,6 +6,7 @@ import useLocationStore from'../../stores/locationStore.js';
 
 const SearchBar = () => {
   const [location, setLocation] = useState('');
+  const [locationIsSelected, setLocationIsSelected] = useState(false);
   let { result, searchLocation, loading, error } = useAutocompleteStore();
   const { setCity } = useLocationStore();
 
@@ -22,11 +23,15 @@ const SearchBar = () => {
       style={styles.searchBar} 
       value={location}
       placeholder="Type here to find a city!"
-      onChangeText={setLocation}
+      onChangeText={text => {
+        setLocation(text);
+        setLocationIsSelected(false);
+      }}
       />
       {loading && <Text>Loading...</Text>}
       {error && <Text>{error}</Text>}
-    <FlatList 
+      {!locationIsSelected && (
+        <FlatList 
       data={result || []} 
       renderItem={({item, index}) => {
         return(
@@ -35,6 +40,7 @@ const SearchBar = () => {
           onPress={()=>{
             setCity(item.name);
             setLocation(item.name);
+            setLocationIsSelected(true);
           }
         }
         >
@@ -43,7 +49,7 @@ const SearchBar = () => {
         )
       }}
       keyExtractor={item=>item.id}
-      />
+    />)}  
   </View>
   )
 };
