@@ -2,13 +2,15 @@ import React, { useEffect } from 'react';
 import { View, Text } from 'react-native';
 import styles from './styles';
 import useWeatherStore from '../../stores/weatherStore.js';
+import useLocationStore from'../../stores/locationStore.js';
 
 const CurrentWeatherData = () => {
   const { weather, fetchWeather, error, loading } = useWeatherStore();
+  const { city } = useLocationStore();
 
   useEffect(() => {
-      fetchWeather('London')
-    }, [fetchWeather]);
+      fetchWeather(city)
+    }, [city, fetchWeather]);
 
   if (loading) return <Text>Loading ...</Text>
   if (error) return <Text>Error: {error}</Text>;
