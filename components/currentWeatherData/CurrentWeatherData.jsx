@@ -22,19 +22,19 @@ const CurrentWeatherData = () => {
     <View style={styles.currentWeatherData}>
       <View style={styles.currentWeatherDataItem}>
         <Text>UV Index</Text>
-        <Text>{uv}</Text>
+        <Text>{Math.round(uv)}</Text>
       </View>
       <View style={styles.currentWeatherDataItem}>
         <Text>Humidity</Text>
-        <Text>{humidity}</Text>
+        <Text>{Math.round(humidity)}</Text>
       </View>
       <View style={styles.currentWeatherDataItem}>
         <Text>Percipitation</Text>
-        <Text>{precip_mm}</Text>
+        <Text>{Math.round(precip_mm)}</Text>
       </View>
       <View style={styles.currentWeatherDataItem}>
         <Text>Wind</Text>
-        <Text>{wind_kph}</Text>
+        <Text>{Math.round(wind_kph)}</Text>
       </View>
     </View>
   )
