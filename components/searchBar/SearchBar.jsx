@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { View, FlatList, TextInput, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
-import useLocationStore from '../../stores/locationStore.js'
+import useAutocompleteStore from '../../stores/autocompleteStore.js';
+import useLocationStore from'../../stores/locationStore.js';
 
 const SearchBar = () => {
   const [location, setLocation] = useState('');
-  const { result, searchLocation, loading, error } = useLocationStore();
+  let { result, searchLocation, loading, error } = useAutocompleteStore();
+  const { setCity } = useLocationStore();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -30,7 +32,11 @@ const SearchBar = () => {
         return(
         <TouchableOpacity
           key={index.toString()} 
-          onPress={console.log("hi")}
+          onPress={()=>{
+            setCity(item.name);
+            setLocation(item.name);
+          }
+        }
         >
           <Text>{item.name},{item.country}</Text>
         </TouchableOpacity>
