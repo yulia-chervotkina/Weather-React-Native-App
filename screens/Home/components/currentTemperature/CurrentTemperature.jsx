@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { View, Text, Image } from 'react-native';
 import styles from './styles';
-import useWeatherStore from '../../stores/weatherStore.js';
-import useLocationStore from'../../stores/locationStore.js';
+import useWeatherStore from '../../../../stores/weatherStore.js';
+import useLocationStore from'../../../../stores/locationStore.js';
 
 const CurrentTemperature = () => {
   const {weather, fetchWeather, error, loading} = useWeatherStore();
@@ -24,7 +24,7 @@ const CurrentTemperature = () => {
       <Text>{condition.text}</Text>
       <Image 
         source={{uri: iconURL}} 
-        style={{ width: 64, height: 64 }}/>
+        style={styles.icon}/>
       <Text>{Math.round(temp_c)}</Text>
     </View>
   )

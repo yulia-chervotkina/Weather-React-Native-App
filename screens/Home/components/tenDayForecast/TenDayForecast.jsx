@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import { View, Text, Image, FlatList } from 'react-native';
 import styles from './styles';
-import useWeatherStore from '../../stores/weatherStore.js';
-import useLocationStore from'../../stores/locationStore.js';
+import useWeatherStore from '../../../../stores/weatherStore.js';
+import useLocationStore from'../../../../stores/locationStore.js';
 
 const TenDayForecast = () => {
   const {forecast, fetchForecast, error, loading} = useWeatherStore();
