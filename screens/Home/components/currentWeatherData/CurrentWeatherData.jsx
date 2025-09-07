@@ -8,9 +8,9 @@ const CurrentWeatherData = () => {
   const { weather, fetchWeather, error, loading } = useWeatherStore();
   const { city } = useLocationStore();
 
-  useEffect(() => {
-      fetchWeather(city)
-    }, [city, fetchWeather]);
+  // useEffect(() => {
+  //     fetchWeather(city)
+  //   }, [city, fetchWeather]);
 
   if (loading) return <Text>Loading ...</Text>
   if (error) return <Text>Error: {error}</Text>;
@@ -20,22 +20,10 @@ const CurrentWeatherData = () => {
 
     return (
     <View style={styles.currentWeatherData}>
-      <View style={styles.currentWeatherDataItem}>
-        <Text>UV Index</Text>
-        <Text>{Math.round(uv)}</Text>
-      </View>
-      <View style={styles.currentWeatherDataItem}>
-        <Text>Humidity</Text>
-        <Text>{Math.round(humidity)}</Text>
-      </View>
-      <View style={styles.currentWeatherDataItem}>
-        <Text>Percipitation</Text>
-        <Text>{Math.round(precip_mm)}</Text>
-      </View>
-      <View style={styles.currentWeatherDataItem}>
-        <Text>Wind</Text>
-        <Text>{Math.round(wind_kph)}</Text>
-      </View>
+        <Text style={styles.currentWeatherDataItem}>UV Index | {Math.round(uv)}</Text>
+        <Text style={styles.currentWeatherDataItem}>Humidity | {Math.round(humidity)} %</Text>
+        <Text style={styles.currentWeatherDataItem}>Percipitation | {Math.round(precip_mm)} mm</Text>
+        <Text style={styles.currentWeatherDataItem}>Wind | {Math.round(wind_kph)} km/h</Text>
     </View>
   )
 };

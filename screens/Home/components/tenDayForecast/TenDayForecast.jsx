@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { View, Text, Image, FlatList } from 'react-native';
+import { View, Text, Image, FlatList, SafeAreaView } from 'react-native';
 import styles from './styles';
 import useWeatherStore from '../../../../stores/weatherStore.js';
 import useLocationStore from'../../../../stores/locationStore.js';
@@ -33,11 +33,13 @@ const TenDayForecast = () => {
   }
 
   return (
-    <FlatList
-      data={weatherDataArray}
-      renderItem={renderItem}
-      keyExtractor={item => item.date}
-    />
+    <SafeAreaView style={{flex: 1}}>
+      <FlatList
+        data={weatherDataArray}
+        renderItem={renderItem}
+        keyExtractor={item => item.date}
+      />
+    </SafeAreaView>
   )
 };
 

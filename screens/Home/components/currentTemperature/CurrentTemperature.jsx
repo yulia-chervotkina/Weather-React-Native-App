@@ -3,10 +3,16 @@ import { View, Text, Image } from 'react-native';
 import styles from './styles';
 import useWeatherStore from '../../../../stores/weatherStore.js';
 import useLocationStore from'../../../../stores/locationStore.js';
+import CurrentWeatherData from '../currentWeatherData/CurrentWeatherData';
 
 const CurrentTemperature = () => {
   const {weather, fetchWeather, error, loading} = useWeatherStore();
   const { city } = useLocationStore();
+
+  const now = new Date();
+  const day = now.getDate();
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const month = months[now.getMonth()];
 
   useEffect(() => {
     fetchWeather(city)
@@ -21,11 +27,13 @@ const CurrentTemperature = () => {
 
   return (
     <View style={styles.currentTemperature}>
-      <Text>{condition.text}</Text>
+      <Text style={styles.day}>Today, {day} {month}</Text>
       <Image 
         source={{uri: iconURL}} 
         style={styles.icon}/>
-      <Text>{Math.round(temp_c)}</Text>
+      <Text style={styles.temperature}>{Math.round(temp_c)}°C</Text>
+      <Text style={styles.condition}>{condition.text}</Text>
+      <CurrentWeatherData />
     </View>
   )
 };

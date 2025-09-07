@@ -3,16 +3,19 @@ import { ScrollView, RefreshControl } from 'react-native';
 import styles from './styles.js';
 import {useNavigation} from '@react-navigation/native';
 import { Button } from '@react-navigation/elements';
+import useLocationStore from '../../stores/locationStore.js';
 
 // import SearchBar from '../SavedLocations/searchBar/SearchBar.jsx';
 import CurrentLocation from './components/currentLocation/CurrentLocation';
 import CurrentTemperature from './components/currentTemperature/CurrentTemperature';
-import CurrentWeatherData from './components/currentWeatherData/CurrentWeatherData';
+// import CurrentWeatherData from './components/currentWeatherData/CurrentWeatherData';
 import HourlyForecast from './components/hourlyForecast/HourlyForecast';
-import TenDayForecast from './components/tenDayForecast/TenDayForecast';
+// import TenDayForecast from './components/tenDayForecast/TenDayForecast';
+import LinearGradient from 'react-native-linear-gradient';
 
 const HomeScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
+  const { city } = useLocationStore();
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -24,6 +27,7 @@ const HomeScreen = () => {
   const navigation = useNavigation();
 
   return (
+    <LinearGradient useAngle={true} angle={45} colors={['#47BFDF', '#4A91FF']} style={styles.linearGradient}>
     <ScrollView 
       contentContainerStyle={styles.container}
       refreshControl={
@@ -36,14 +40,15 @@ const HomeScreen = () => {
         />
       }
       >
-      <Button onPress={() => navigation.navigate('Saved')}>PRESS</Button>
+      <Button onPress={() => navigation.navigate('Saved')}>{city}</Button>
       {/* <SearchBar /> */}
       <CurrentLocation />
       <CurrentTemperature />
-      <CurrentWeatherData />
+      {/* <CurrentWeatherData /> */}
       <HourlyForecast />
-      <TenDayForecast />
+      {/* <TenDayForecast /> */}
     </ScrollView>
+    </LinearGradient>
   )
 };
 
