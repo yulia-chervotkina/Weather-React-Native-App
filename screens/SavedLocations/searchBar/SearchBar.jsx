@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { View, FlatList, TextInput, Text, TouchableOpacity, Button } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './styles.js';
 import useAutocompleteStore from '../../../stores/autocompleteStore.js';
 import useLocationStore from '../../../stores/locationStore.js';
@@ -20,13 +19,6 @@ const SearchBar = () => {
     return () => clearTimeout(timeout);
   }, [location, searchLocation]);
 
-  const storeData = async (location) => {
-    try {
-      await AsyncStorage.setItem('location', location);
-    } catch (e) {
-      return <Text>Error</Text>
-    }
-  }
   return (
   <View>
     <TextInput 
@@ -65,7 +57,7 @@ const SearchBar = () => {
         )
       }}
       keyExtractor={item=>item.id}
-    />)}  
+    />)}
   </View>
   )
 };
