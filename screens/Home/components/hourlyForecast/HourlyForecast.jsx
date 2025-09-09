@@ -41,12 +41,12 @@ const HourlyForecast = () => {
   const renderItem = ({ item }) => {
     return(
       <View style={styles.currentWeatherDataItem}>
-        <Text>{Math.round(item.temp_c)}</Text>
+        <Text style={styles.currentWeatherDataItemText}>{Math.round(item.temp_c)} °C</Text>
         <Image 
           source={{uri: 'https:' + item.condition.icon}} 
-          style={{ width: 32, height: 32 }}
+          style={styles.image}
         />
-        <Text>{new Date(item.time).getHours()}:00</Text>
+        <Text style={styles.currentWeatherDataItemText}>{new Date(item.time).getHours()}:00</Text>
       </View>
     )
   }
