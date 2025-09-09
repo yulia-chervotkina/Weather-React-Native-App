@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
-import { View, Text, Image, FlatList, SafeAreaView } from 'react-native';
+import { Text, Image, FlatList, SafeAreaView } from 'react-native';
+import { Col, Grid } from "react-native-easy-grid";
 import styles from './styles';
 import useWeatherStore from '../../../../stores/weatherStore.js';
 import useLocationStore from'../../../../stores/locationStore.js';
@@ -21,14 +22,16 @@ const TenDayForecast = () => {
 
   const renderItem = ({ item }) => {
     return (
-      <View style={styles.tenDayForecastItem}>
-        <Text>{daysOfWeek[new Date(item.date).getDay()]}</Text>
-        <Image 
+      <Grid style={styles.tenDayForecast}>
+        <Col size={40}><Text style={styles.tenDayForecastItemText}>{daysOfWeek[new Date(item.date).getDay()]}</Text></Col>
+        <Col size={20}>
+          <Image 
           source={{uri: 'https:' + item.day.condition.icon}} 
           style={{ width: 32, height: 32 }}/>
-        <Text>{Math.round(item.day.maxtemp_c)}</Text>
-        <Text>{Math.round(item.day.mintemp_c)}</Text>
-      </View>
+          </Col>
+        <Col size={20}><Text style={styles.tenDayForecastItemText}>{Math.round(item.day.maxtemp_c)} °C</Text></Col>
+        <Col size={20}><Text style={styles.tenDayForecastItemText}>{Math.round(item.day.mintemp_c)} °C</Text></Col>
+      </Grid>
     )
   }
 
@@ -38,6 +41,7 @@ const TenDayForecast = () => {
         data={weatherDataArray}
         renderItem={renderItem}
         keyExtractor={item => item.date}
+        scrollEnabled={false}
       />
     </SafeAreaView>
   )
