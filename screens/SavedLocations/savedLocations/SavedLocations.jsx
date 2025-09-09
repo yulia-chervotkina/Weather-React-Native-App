@@ -2,15 +2,15 @@ import React from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import useSavedLocationsStore from '../../../stores/savedLocationsStore.js';
 import useLocationStore from '../../../stores/locationStore.js';
-
+import styles from './styles.js';
 
 const SavedLocations = () => {
     const { savedLocations } = useSavedLocationsStore();
     const { setCity } = useLocationStore();
 
     return (
-        <View>
-            <Text>Saved locations</Text>
+        <View style={styles.container}>
+            <Text style={styles.header}>Saved locations</Text>
             {!Array.isArray(savedLocations) && <Text>No saved locations</Text>}
             <FlatList 
                 data={savedLocations || []}
@@ -19,13 +19,14 @@ const SavedLocations = () => {
                     return(
                         <View>
                             <TouchableOpacity
-                                key={index}
+                            // TODO Fix the key
+                                key={index.toString()} 
                                 onPress={() => {
                                     setCity(item.name);
                                     // setLocation(item.name);
                                 }}
                             >
-                            <Text>{item}</Text>    
+                            <Text style={styles.list}>{item}</Text>    
                             </TouchableOpacity>
                         </View>
                     )
