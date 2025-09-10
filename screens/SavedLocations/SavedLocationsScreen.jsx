@@ -7,7 +7,7 @@ import SavedLocations from './savedLocations/SavedLocations.jsx';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles.js';
 
-const SavedLocationsScreen = () => {
+const SearchLocationsScreen = () => {
 //   const navigation = useNavigation();
     
   return (
@@ -20,4 +20,4 @@ const SavedLocationsScreen = () => {
   );
 }
 
-export default SavedLocationsScreen;
+export default SearchLocationsScreen;
