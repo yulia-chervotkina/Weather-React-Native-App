@@ -22,12 +22,12 @@ const TenDayForecast = () => {
 
   const renderItem = ({ item }) => {
     return (
-      <Grid style={styles.tenDayForecast}>
+      <Grid>
         <Col size={40}><Text style={styles.tenDayForecastItemText}>{daysOfWeek[new Date(item.date).getDay()]}</Text></Col>
         <Col size={20}>
           <Image 
           source={{uri: 'https:' + item.day.condition.icon}} 
-          style={{ width: 32, height: 32 }}/>
+          style={styles.image}/>
           </Col>
         <Col size={20}><Text style={styles.tenDayForecastItemText}>{Math.round(item.day.maxtemp_c)} °C</Text></Col>
         <Col size={20}><Text style={styles.tenDayForecastItemText}>{Math.round(item.day.mintemp_c)} °C</Text></Col>
