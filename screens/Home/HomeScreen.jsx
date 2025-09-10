@@ -2,17 +2,15 @@ import React, {useState} from 'react';
 import { ScrollView, RefreshControl } from 'react-native';
 import styles from './styles.js';
 import {useNavigation} from '@react-navigation/native';
-import { Button } from '@react-navigation/elements';
-import useLocationStore from '../../stores/locationStore.js';
 import LinearGradient from 'react-native-linear-gradient';
 
+import HomeScreenButton from './components/Button/Button.jsx'
 import CurrentTemperature from './components/currentTemperature/CurrentTemperature';
 import HourlyForecast from './components/hourlyForecast/HourlyForecast';
 import TenDayForecast from './components/tenDayForecast/TenDayForecast';
 
 const HomeScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
-  const { city } = useLocationStore();
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -37,7 +35,7 @@ const HomeScreen = () => {
           />
         }
         >
-        <Button onPress={() => navigation.navigate('Saved')} style={styles.button}>{city}</Button>
+        <HomeScreenButton />
         <CurrentTemperature />
         <HourlyForecast />
         <TenDayForecast />
