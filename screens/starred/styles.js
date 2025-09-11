@@ -1,9 +1,11 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  location: {
-    color: 'blue',
-    padding: 5,
+  linearGradient: {
+    flex: 1,
+  },
+  container: {
+    flex: 1,
   },
 });
 

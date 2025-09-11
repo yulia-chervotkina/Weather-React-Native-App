@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { View, Text, Image, FlatList } from 'react-native';
+import { View, Image, FlatList } from 'react-native';
+import Text from '../../../../components/Text/PlainText.jsx';
 import styles from './styles';
 import useWeatherStore from '../../../../stores/weatherStore.js';
 import useLocationStore from'../../../../stores/locationStore.js';
@@ -40,13 +41,13 @@ const HourlyForecast = () => {
 
   const renderItem = ({ item }) => {
     return(
-      <View style={styles.currentWeatherDataItem}>
-        <Text style={styles.currentWeatherDataItemText}>{Math.round(item.temp_c)} °C</Text>
+      <View style={styles.container}>
+        <Text>{Math.round(item.temp_c)} °C</Text>
         <Image 
           source={{uri: 'https:' + item.condition.icon}} 
           style={styles.image}
         />
-        <Text style={styles.currentWeatherDataItemText}>{new Date(item.time).getHours()}:00</Text>
+        <Text>{new Date(item.time).getHours()}:00</Text>
       </View>
     )
   }

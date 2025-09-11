@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Image } from 'react-native';
+import Text from '../../../../components/Text/PlainText.jsx';
 import styles from './styles';
 import useWeatherStore from '../../../../stores/weatherStore.js';
 import useLocationStore from'../../../../stores/locationStore.js';
@@ -26,7 +27,7 @@ const CurrentTemperature = () => {
   const {condition, temp_c} = weather.current;
 
   return (
-    <View style={styles.currentTemperature}>
+    <View style={styles.container}>
       <Text style={styles.day}>Today, {day} {month}</Text>
       <Image 
         source={{uri: iconURL}} 

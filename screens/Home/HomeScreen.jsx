@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
 import { ScrollView, RefreshControl } from 'react-native';
 import styles from './styles.js';
-import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
-
 import HomeScreenButton from './components/Button/Button.jsx'
 import CurrentTemperature from './components/currentTemperature/CurrentTemperature';
 import HourlyForecast from './components/hourlyForecast/HourlyForecast';
@@ -18,8 +16,6 @@ const HomeScreen = () => {
       setRefreshing(false);
     }, 2000)
   }, []);
-
-  const navigation = useNavigation();
 
   return (
     <LinearGradient useAngle={true} angle={45} colors={['#4A91FF', '#47BFDF']} style={styles.linearGradient}>

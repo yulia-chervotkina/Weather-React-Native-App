@@ -2,12 +2,14 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
+    // flexGrow: 1,
     paddingLeft: '20',
     paddingRight: '20',
+    // width: '100%', 
+    // height: '400%',
   },
   linearGradient: {
-    flex: 1,
+    // flex: 1,
     borderRadius: 5,
   },
   button: {

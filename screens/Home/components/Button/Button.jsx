@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './styles.js';
-import { TouchableOpacity, View, Text, Image, Button } from 'react-native';
+import { TouchableOpacity, View, Text } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import useLocationStore from '../../../../stores/locationStore.js';
-import geopoint from '../../../../assets/icons/GeoPoint.png';
-import star from '../../../../assets/icons/Star.png';
+import Geopoint from '../../../../assets/icons/location.svg';
+import Star from '../../../../assets/icons/star.svg';
 
 
 const HomeScreenButton = () => {
@@ -13,12 +13,12 @@ const HomeScreenButton = () => {
 
     return(
         <View style={styles.button}>
-            <Image source={geopoint} style={styles.icon}></Image>
-            <TouchableOpacity>
-                <Text onPress={() => navigation.navigate('Search')} style={styles.text}>{city}</Text>
+            <Geopoint style={styles.icon}/>
+            <TouchableOpacity onPress={() => navigation.navigate('Search')}> 
+                <Text style={styles.text}>{city}</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('Starred')}>
-                <Image source={star} style={styles.icon}></Image>
+                <Star style={styles.icon}/>
             </TouchableOpacity>
         </View>
     )
