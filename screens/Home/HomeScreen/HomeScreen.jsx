@@ -2,10 +2,9 @@ import React, {useState} from 'react';
 import { ScrollView, RefreshControl } from 'react-native';
 import styles from './styles.js';
 import LinearGradient from 'react-native-linear-gradient';
-import HomeScreenButton from './components/Button/Button.jsx'
-import CurrentTemperature from './components/currentTemperature/CurrentTemperature';
-import HourlyForecast from './components/hourlyForecast/HourlyForecast';
-import TenDayForecast from './components/tenDayForecast/TenDayForecast';
+import FauxButton from '../components/FauxButton/FauxButton.jsx'
+import CurrentWeather from '../components/CurrentWeather/CurrentWeather.jsx';
+import Forecast from '../components/Forecast/Forecast.jsx'
 
 const HomeScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
@@ -31,10 +30,9 @@ const HomeScreen = () => {
           />
         }
         >
-        <HomeScreenButton />
-        <CurrentTemperature />
-        <HourlyForecast />
-        <TenDayForecast />
+        <FauxButton />
+        <CurrentWeather />
+        <Forecast />
       </ScrollView>
     </LinearGradient>
   )

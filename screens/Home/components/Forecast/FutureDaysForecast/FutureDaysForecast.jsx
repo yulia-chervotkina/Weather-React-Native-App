@@ -1,23 +1,13 @@
-import React, {useEffect} from 'react';
-import { View, Image, FlatList, SafeAreaView } from 'react-native';
-import Text from '../../../../components/Text/PlainText.jsx';
+import React from 'react';
+import { Image, FlatList, SafeAreaView } from 'react-native';
+import Text from '../../../../../components/Text/PlainText.jsx';
 import { Col, Grid } from "react-native-easy-grid";
-import styles from './styles';
-import useWeatherStore from '../../../../stores/weatherStore.js';
-import useLocationStore from'../../../../stores/locationStore.js';
+import styles from './styles.js';
+import useWeatherStore from '../../../../../stores/weatherStore.js';
 
-const TenDayForecast = () => {
-  const {forecast, fetchForecast, error, loading} = useWeatherStore();
-  const { city } = useLocationStore();
+const FutureDaysForecast = () => {
+  const { forecast } = useWeatherStore();
   const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
-  useEffect(() => {
-    fetchForecast(city)
-  }, [city, fetchForecast]);
-  
-  if (loading) return <Text>Loading ...</Text>
-  if (error) return <Text>Error: {error}</Text>;
-  if (!forecast) return <Text>Couldn't fetch data</Text>;
   
   const weatherDataArray = forecast.forecast.forecastday;
   
@@ -37,17 +27,15 @@ const TenDayForecast = () => {
   }
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-    <View>
+    <SafeAreaView style={styles.container}>
       <FlatList
         data={weatherDataArray}
         renderItem={renderItem}
         keyExtractor={item => item.date}
         scrollEnabled={false}
       />
-    </View>
     </SafeAreaView>
   )
 };
 
-export default TenDayForecast;
+export default FutureDaysForecast;

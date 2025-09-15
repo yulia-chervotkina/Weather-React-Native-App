@@ -2,31 +2,30 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const useSavedLocationsStore = create()(
+const useStarredLocationsStore = create(
   persist(
     (set, get) => (
       {
-        savedLocations: [],
+        starredLocations: [],
 
         addLocation: location => {
-          const current = get().savedLocations;
+          const current = get().starredLocations;
           if (!current.includes(location)) {
-            set({ savedLocations: [...current, location] });
+            set({ starredLocations: [...current, location] });
           }
         },
 
         removeLocation: location => {
           set(state => ({
-            savedLocations: state.savedLocations.filter(e => e !== location),
+            starredLocations: state.starredLocations.filter(e => e !== location),
           }));
         },
-      },
+      }),
       {
-        name: 'savedLocations',
+        name: 'starredLocations',
         storage: createJSONStorage(() => AsyncStorage),
       }
     ),
-  ),
 );
 
-export default useSavedLocationsStore;
+export default useStarredLocationsStore;

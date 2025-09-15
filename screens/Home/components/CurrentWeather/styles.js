@@ -1,15 +1,10 @@
 import { StyleSheet } from 'react-native';
-import {getFontFamily} from '../../../../utils/fontFamily.js'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    fontFamily: getFontFamily('normal'),
-    hight: 353,
-    width: 353,
     display: 'flex',
     flexDirection: 'column',
-    alignContent: 'center',
     alignItems: 'center',
     padding: 5,
     marginBottom: 10,
@@ -21,29 +16,29 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: 'rgba(255, 255, 255, 0.25)'
   },
+  gridContainer: {
+    flexDirection: 'column',
+    padding: 5,
+    marginTop: 10,
+  },
+   text: {
+    height: 40,
+    paddingTop: 2,
+    paddingBottom: 20,
+    paddingLeft: 10,
+  },
   icon: {
     width: 64, 
     height: 64,
   },
   condition: {
     fontSize: 24,
-    fontWeight: '00',
-    fontFamily: 'Overpass',
-    color: 'white',
-    textShadowColor: '#4A91FF',
-    textShadowOffset: {width: 0, height: 1},
-    textShadowRadius: 3
   },
   day: {
     padding: 10
   },
   temperature: {
     fontSize: 100,
-    fontFamily: 'Overpass',
-    color: 'white',
-    textShadowColor: '#4A91FF',
-    textShadowOffset: {width: 0, height: 1},
-    textShadowRadius: 3
   }
 });
 

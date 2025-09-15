@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
+    
     // flexGrow: 1,
     paddingLeft: '20',
     paddingRight: '20',

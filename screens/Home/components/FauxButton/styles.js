@@ -2,17 +2,14 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   button: {
+    display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'start',
     alignItems: 'center',
-    alignContent: 'center',
-    padding: 10,
-    //TODO fix this padding for SVG
-    paddingRight: 50,
+    alignContent: 'start',
+    padding: 7,
     marginTop: 15,
     marginBottom: 15,
-    marginLeft: 10,
-    marginRight: 10,
     backgroundColor: 'transparent',
     borderStyle: 'solid',
     borderColor: '#4A91FF',
@@ -30,11 +27,11 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 25,
     paddingTop: 5,
-    fontFamily: 'Overpass',
-    color: 'white',
-    paddingLeft: 15,
-    paddingRight: 10,
-  }
+    marginLeft: 7,
+  },
+  geoIcon: {
+    marginLeft: 10,
+  },
 });
 
 export default styles;

@@ -1,23 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Image, FlatList } from 'react-native';
-import Text from '../../../../components/Text/PlainText.jsx';
-import styles from './styles';
-import useWeatherStore from '../../../../stores/weatherStore.js';
-import useLocationStore from'../../../../stores/locationStore.js';
+import Text from '../../../../../components/Text/PlainText.jsx';
+import styles from './styles.js';
+import useWeatherStore from '../../../../../stores/weatherStore.js';
 
 const HourlyForecast = () => {
-  const {forecast, fetchForecast, error, loading} = useWeatherStore();
-  const { city } = useLocationStore();
-  
-  useEffect(() => {
-      fetchForecast(city)
-    }, [city, fetchForecast]);
+  const { forecast } = useWeatherStore();
 
-  if (loading) return <Text>Loading ...</Text>;
-  if (error) return <Text>Error: {error}</Text>;
-  if (!forecast) return <Text>Couldn't fetch data</Text>;
-
-  const getNext24HoursForecast = (forecast) => {
+  const getNext24HoursForecast = () => {
     const hourlyDataToday = forecast.forecast.forecastday[0].hour;
     const hourlyDataTomorrow = forecast.forecast.forecastday[1].hour || [];
 

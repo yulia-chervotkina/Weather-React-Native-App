@@ -1,23 +1,20 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, FlatList, TextInput, TouchableOpacity } from 'react-native';
-import Text from '../../../components/Text/PlainText.jsx';
+import { View, FlatList, TextInput } from 'react-native';
+import Text from '../../../../components/Text/PlainText.jsx';
 import styles from './styles.js';
-import useAutocompleteStore from '../../../stores/autocompleteStore.js';
-import useLocationStore from '../../../stores/locationStore.js';
-import useSavedLocationsStore from '../../../stores/savedLocationsStore.js';
+import useAutocompleteStore from '../../../../stores/autocompleteStore.js';
+import useLocationStore from '../../../../stores/locationStore.js';
+import useStarredLocationsStore from '../../../../stores/starredLocationsStore.js';
 import { useNavigation } from '@react-navigation/native';
-
+import LocationRow from '../../../../components/LocationRow/LocationRow.jsx';
+import Add from '../../../../assets/icons/add.svg'
 
 const SearchBar = () => {
   const [location, setLocation] = useState('');
   const [locationIsSelected, setLocationIsSelected] = useState(false);
   let { result, searchLocation, loading, error } = useAutocompleteStore();
   const { setCity } = useLocationStore();
-  // const { savedLocations, addLocation } = useSavedLocationsStore();
-  const savedLocations = useSavedLocationsStore(state => state.savedLocations);
-  const addLocation = useSavedLocationsStore(state => state.addLocation);
-  console.log(useSavedLocationsStore)
-  console.log(savedLocations)
+  const { addLocation } = useStarredLocationsStore();
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -31,8 +28,8 @@ const SearchBar = () => {
     setCity(name);
     setLocation(name);
     setLocationIsSelected(true);
-    navigation.navigate('Home')
-  }, [setCity, setLocation, setLocationIsSelected])
+    navigation.navigate('Home');
+  }, [setCity, setLocation, setLocationIsSelected, navigation])
 
   return (
   <View>
@@ -57,26 +54,17 @@ const SearchBar = () => {
           keyExtractor={(item, index) => index.toString()}
           renderItem={({item, index}) => {
             return(
-              <View style={styles.locationRow}>
-                <TouchableOpacity
-                  style={styles.locationRow}
-                  onPress={() => handleSelectLocation(item.name)}
-                >
-                <Text style={styles.text}>{item.name}, {item.country}</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity 
-                onPress={() => {
+                <LocationRow 
+                  label={`${item.name}, ${item.country}`}
+                  onPressLocation={()=>handleSelectLocation(item.name)}
+                  onPressButton={()=>{
                     addLocation(`${item.name}, ${item.country}`);
                     handleSelectLocation(item.name);
-                    }
-                  }>
-                <Text style={styles.button}>+</Text>
-                </TouchableOpacity>
-              </View>
+                  }}
+                  button={<Add />}
+                  />
             )
           }}
-        
         />
         ) : null}
   </View>
