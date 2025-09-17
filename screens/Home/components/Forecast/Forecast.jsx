@@ -8,11 +8,13 @@ import FutureDaysForecast from './FutureDaysForecast/FutureDaysForecast.jsx';
 
 const Forecast = () => {
     const {forecast, fetchForecast, error, loading} = useWeatherStore();
-    const { city } = useLocationStore();
-
+    const { currentCity, searchedCity } = useLocationStore();
+    const activeCity = searchedCity || currentCity;
     useEffect(() => {
-          fetchForecast(city)
-        }, [city, fetchForecast]);
+        if(activeCity) {
+            fetchForecast(activeCity)
+        } 
+    }, [activeCity, fetchForecast]);
 
     if (loading) return <Text>Loading ...</Text>;
     if (error) return <Text>Error: {error}</Text>;

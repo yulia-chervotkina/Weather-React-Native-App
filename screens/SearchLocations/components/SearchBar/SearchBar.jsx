@@ -7,68 +7,71 @@ import useLocationStore from '../../../../stores/locationStore.js';
 import useStarredLocationsStore from '../../../../stores/starredLocationsStore.js';
 import { useNavigation } from '@react-navigation/native';
 import LocationRow from '../../../../components/LocationRow/LocationRow.jsx';
-import Add from '../../../../assets/icons/add.svg'
+import Add from '../../../../assets/icons/add.svg';
 
 const SearchBar = () => {
   const [location, setLocation] = useState('');
   const [locationIsSelected, setLocationIsSelected] = useState(false);
   let { result, searchLocation, loading, error } = useAutocompleteStore();
-  const { setCity } = useLocationStore();
+  const { setSearchedCity } = useLocationStore();
   const { addLocation } = useStarredLocationsStore();
   const navigation = useNavigation();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      searchLocation(location)
+      searchLocation(location);
     }, 400);
     return () => clearTimeout(timeout);
   }, [location, searchLocation]);
 
-  const handleSelectLocation = useCallback(name => {
-    setCity(name);
-    setLocation(name);
-    setLocationIsSelected(true);
-    navigation.navigate('Home');
-  }, [setCity, setLocation, setLocationIsSelected, navigation])
+  const handleSelectLocation = useCallback(
+    name => {
+      setSearchedCity(name);
+      setLocation(name);
+      setLocationIsSelected(true);
+      navigation.popTo('Home');
+    },
+    [setSearchedCity, setLocation, setLocationIsSelected, navigation],
+  );
 
   return (
-  <View>
-    <TextInput 
-      style={styles.searchBar} 
-      autoFocus
-      value={location}
-      placeholder="Type here to find a city!"
-      placeholderTextColor='white'
-      onChangeText={text => {
-        setLocation(text);
-        setLocationIsSelected(false);
-      }}
+    <View>
+      <TextInput
+        style={styles.searchBar}
+        autoFocus
+        value={location}
+        placeholder="Type here to find a city!"
+        placeholderTextColor="white"
+        onChangeText={text => {
+          setLocation(text);
+          setLocationIsSelected(false);
+        }}
       />
 
       {loading ? <Text>Loading...</Text> : null}
       {error ? <Text>{error}</Text> : null}
 
       {!locationIsSelected ? (
-        <FlatList 
-          data={result || []} 
+        <FlatList
+          data={result || []}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({item, index}) => {
-            return(
-                <LocationRow 
-                  label={`${item.name}, ${item.country}`}
-                  onPressLocation={()=>handleSelectLocation(item.name)}
-                  onPressButton={()=>{
-                    addLocation(`${item.name}, ${item.country}`);
-                    handleSelectLocation(item.name);
-                  }}
-                  button={<Add />}
-                  />
-            )
+          renderItem={({ item, index }) => {
+            return (
+              <LocationRow
+                label={`${item.name}, ${item.country}`}
+                onPressLocation={() => handleSelectLocation(item.name)}
+                onPressButton={() => {
+                  addLocation(`${item.name}, ${item.country}`);
+                  handleSelectLocation(item.name);
+                }}
+                button={<Add style={styles.button} />}
+              />
+            );
           }}
         />
-        ) : null}
-  </View>
-  )
+      ) : null}
+    </View>
+  );
 };
 
 export default SearchBar;

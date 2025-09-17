@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, FlatList, TouchableOpacity } from 'react-native';
-// import FlatList from '../../../components/FlatList/FlatList.jsx'
+import { View, FlatList } from 'react-native';
 import Text from '../../../components/Text/PlainText.jsx';
 import useStarredLocationsStore from '../../../stores/starredLocationsStore.js';
 import useLocationStore from '../../../stores/locationStore.js';
@@ -9,28 +8,29 @@ import { useNavigation } from '@react-navigation/native';
 import LocationRow from '../../../components/LocationRow/LocationRow.jsx';
 import Remove from '../../../assets/icons/remove.svg';
 
-
 const StarredLocations = () => {
-    const { starredLocations, removeLocation } = useStarredLocationsStore();
-    const { setCity } = useLocationStore();
-    const navigation = useNavigation();
+  const { starredLocations, removeLocation } = useStarredLocationsStore();
+  const { setSearchedCity } = useLocationStore();
+  const navigation = useNavigation();
 
-    const renderItem = ({ item }) => (
-      <LocationRow 
-        label={item}
-        onPressLocation={()=> {
-          setCity(item);
-          navigation.navigate('Home')
-        }}
-        onPressButton={()=> removeLocation(item)} 
-        button={<Remove />}
-          />
+  const renderItem = ({ item }) => (
+    <LocationRow
+      label={item}
+      onPressLocation={() => {
+        setSearchedCity(item);
+        navigation.popTo('Home');
+      }}
+      onPressButton={() => removeLocation(item)}
+      button={<Remove style={styles.button} />}
+    />
   );
 
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Favorite locations</Text>
-      {(!starredLocations || starredLocations.length === 0) && (<Text style={styles.list}>No favorite locations</Text>)}
+      {(!starredLocations || starredLocations.length === 0) && (
+        <Text style={styles.list}>No favorite locations</Text>
+      )}
       <FlatList
         data={starredLocations}
         keyExtractor={(item, index) => index.toString()}
@@ -38,6 +38,6 @@ const StarredLocations = () => {
       />
     </View>
   );
-}
+};
 
 export default StarredLocations;
