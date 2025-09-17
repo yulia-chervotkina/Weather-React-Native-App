@@ -4,28 +4,27 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const useStarredLocationsStore = create(
   persist(
-    (set, get) => (
-      {
-        starredLocations: [],
+    (set, get) => ({
+      starredLocations: [],
 
-        addLocation: location => {
-          const current = get().starredLocations;
-          if (!current.includes(location)) {
-            set({ starredLocations: [...current, location] });
-          }
-        },
+      addLocation: location => {
+        const current = get().starredLocations;
+        if (!current.includes(location)) {
+          set({ starredLocations: [...current, location] });
+        }
+      },
 
-        removeLocation: location => {
-          set(state => ({
-            starredLocations: state.starredLocations.filter(e => e !== location),
-          }));
-        },
-      }),
-      {
-        name: 'starredLocations',
-        storage: createJSONStorage(() => AsyncStorage),
-      }
-    ),
+      removeLocation: location => {
+        set(state => ({
+          starredLocations: state.starredLocations.filter(e => e !== location),
+        }));
+      },
+    }),
+    {
+      name: 'starredLocations',
+      storage: createJSONStorage(() => AsyncStorage),
+    },
+  ),
 );
 
 export default useStarredLocationsStore;

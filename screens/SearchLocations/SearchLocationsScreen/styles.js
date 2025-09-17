@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   },
   linearGradient: {
     flex: 1,
-  }
+  },
 });
 
 export default styles;

@@ -20,8 +20,8 @@ const useWeatherStore = create(set => ({
   fetchForecast: async city => {
     set({ loading: true, error: null });
     try {
-        const data = await fetchForecast(city);
-        set({ forecast: data , loading: false});
+      const data = await fetchForecast(city);
+      set({ forecast: data, loading: false });
     } catch (error) {
       set({ error: error.message, loading: false });
     }

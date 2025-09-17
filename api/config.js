@@ -5,7 +5,7 @@ const searchLocation = async location => {
   const response = await fetch(
     `${BASE_URL}/search.json?key=${API_KEY}&q=${location}`,
   );
-  if(!response.ok) {
+  if (!response.ok) {
     throw new Error("Couldn't find the location");
   }
   return response.json();

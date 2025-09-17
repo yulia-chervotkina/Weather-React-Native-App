@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     backgroundColor: 'transparent',
     borderStyle: 'solid',
-    borderColor: '#4A91FF',
+    borderColor: '#4a92ff5e',
     borderWidth: 1.5,
     borderRadius: 30,
     shadowColor: '#4A91FF',

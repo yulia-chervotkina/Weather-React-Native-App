@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   searchBar: {
     borderStyle: 'solid',
-    borderColor: '#4A91FF',
+    borderColor: '#4a92ff5e',
     borderWidth: 1.5,
     borderRadius: 20,
     padding: 5,
@@ -12,24 +12,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Overpass',
     fontSize: 18,
   },
-  text: {
-    paddingTop: 12,
-  },
-  locationRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
   button: {
-    margin: 5,
-    paddingLeft: 12,
-    paddingRight: 12,
-    paddingTop: 3,
-    paddingBottom: 3,
-    borderStyle: 'solid',
-    borderColor: '#4A91FF',
-    backgroundColor: '#4A91FF',
-    borderWidth: 1.5,
-    borderRadius: 50,
+    margin: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    backgroundColor: '#4a92ffff',
+    borderRadius: 40,
   },
 });
 

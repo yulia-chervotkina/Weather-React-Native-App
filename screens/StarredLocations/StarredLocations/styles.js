@@ -10,22 +10,13 @@ const styles = StyleSheet.create({
   },
   list: {
     margin: 10,
-    paddingTop: 5
-  },
-  locationRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    paddingTop: 5,
   },
   button: {
-    margin: 5,
-    paddingLeft: 12,
-    paddingRight: 12,
-    paddingTop: 3,
-    paddingBottom: 5,
-    borderStyle: 'solid',
-    borderColor: '#ff4a4aff',
-    backgroundColor: '#ff4a4aff',
-    borderWidth: 1.5,
+    margin: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    backgroundColor: '#FF595E',
     borderRadius: 50,
   },
 });
