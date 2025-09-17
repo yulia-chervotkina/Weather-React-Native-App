@@ -1,5 +1,4 @@
-const API_KEY = '4dcb742e1c79490f825150411252108';
-const BASE_URL = 'https://api.weatherapi.com/v1';
+import { API_KEY, BASE_URL } from '@env';
 
 const searchLocation = async location => {
   const response = await fetch(
