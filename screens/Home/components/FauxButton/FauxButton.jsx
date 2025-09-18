@@ -1,18 +1,17 @@
-import React from 'react';
-import styles from './styles.js';
-import { TouchableOpacity } from 'react-native';
-import { Row, Col, Grid } from 'react-native-easy-grid';
-import Text from '../../../../components/Text/PlainText.jsx';
 import { useNavigation } from '@react-navigation/native';
-import useLocationStore from '../../../../stores/locationStore.js';
+import { TouchableOpacity } from 'react-native';
+import { Col, Grid, Row } from 'react-native-easy-grid';
+
 import Geopoint from '../../../../assets/icons/location.svg';
 import Star from '../../../../assets/icons/star.svg';
+import Text from '../../../../components/Text/PlainText.jsx';
+import useLocationStore from '../../../../stores/locationStore.js';
+import styles from './styles.js';
 
-const HomeScreenButton = () => {
+const FauxButton = () => {
   const { currentCity, searchedCity } = useLocationStore();
   const navigation = useNavigation();
   const activeCity = searchedCity || currentCity;
-  console.log(activeCity);
   return (
     <Grid>
       <Row style={styles.button}>
@@ -34,4 +33,4 @@ const HomeScreenButton = () => {
   );
 };
 
-export default HomeScreenButton;
+export default FauxButton;

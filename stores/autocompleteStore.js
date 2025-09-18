@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { searchLocation } from '../api/config.js';
+import { searchLocation } from '../api/weather.js';
 
 const useAutocompleteStore = create(set => ({
   result: [],

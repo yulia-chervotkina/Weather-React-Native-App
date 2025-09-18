@@ -5,11 +5,11 @@ import LinearGradient from 'react-native-linear-gradient';
 import FauxButton from '../components/FauxButton/FauxButton.jsx';
 import CurrentWeather from '../components/CurrentWeather/CurrentWeather.jsx';
 import Forecast from '../components/Forecast/Forecast.jsx';
-
+// массив сюда
 const HomeScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
 
-  const onRefresh = React.useCallback(() => {
+  const onRefresh = React.useCallback(() => { // тут
     setRefreshing(true);
     setTimeout(() => {
       setRefreshing(false);
@@ -18,7 +18,7 @@ const HomeScreen = () => {
 
   return (
     <LinearGradient
-      colors={['#47BFDF', '#4A91FF']}
+      colors={['#47BFDF', '#4A91FF']} // если это не примитив и я заранее знаю, что там должно быть - убрать вне компонента
       style={styles.linearGradient}
     >
       <ScrollView

@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { fetchWeather, fetchForecast } from '../api/config.js';
+import { fetchWeather, fetchForecast } from '../api/weather.js';
 
 const useWeatherStore = create(set => ({
   weather: null,
