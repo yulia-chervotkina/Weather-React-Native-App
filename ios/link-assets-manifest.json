@@ -1,9 +1,9 @@
 {
-  "migIndex": 1,
-  "data": [
-    {
-      "path": "assets/fonts/OverpassRegular.ttf",
-      "sha1": "d4a1bed4c947e9cf62fd5dcdb84adfa481ee15e0"
-    }
-  ]
+    "migIndex": 1,
+    "data": [
+        {
+            "path": "assets/fonts/OverpassRegular.ttf",
+            "sha1": "d4a1bed4c947e9cf62fd5dcdb84adfa481ee15e0"
+        }
+    ]
 }
