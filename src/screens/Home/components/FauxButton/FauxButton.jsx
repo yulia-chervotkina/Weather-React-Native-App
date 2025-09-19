@@ -1,11 +1,12 @@
-import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native';
 import { Col, Grid, Row } from 'react-native-easy-grid';
 
-import Geopoint from '../../../../assets/icons/location.svg';
-import Star from '../../../../assets/icons/star.svg';
-import Text from '../../../../components/Text/PlainText.jsx';
-import useLocationStore from '../../../../stores/locationStore.js';
+import Geopoint from '@assets/icons/location.svg';
+import Star from '@assets/icons/star.svg';
+import Text from '@components/Text/PlainText.jsx';
+import { useNavigation } from '@react-navigation/native';
+import useLocationStore from '@stores/locationStore.js';
+
 import styles from './styles.js';
 
 const FauxButton = () => {

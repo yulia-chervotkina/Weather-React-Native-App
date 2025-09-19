@@ -1,11 +1,12 @@
-import { useNavigation } from '@react-navigation/native';
 import { FlatList, View } from 'react-native';
 
-import Remove from '../../../assets/icons/remove.svg';
-import LocationRow from '../../../components/LocationRow/LocationRow.jsx';
-import Text from '../../../components/Text/PlainText.jsx';
-import useLocationStore from '../../../stores/locationStore.js';
-import useStarredLocationsStore from '../../../stores/starredLocationsStore.js';
+import Remove from '@assets/icons/remove.svg';
+import LocationRow from '@components/LocationRow/LocationRow.jsx';
+import Text from '@components/Text/PlainText.jsx';
+import { useNavigation } from '@react-navigation/native';
+import useLocationStore from '@stores/locationStore.js';
+import useStarredLocationsStore from '@stores/starredLocationsStore.js';
+
 import styles from './styles.js';
 
 const StarredLocations = () => {

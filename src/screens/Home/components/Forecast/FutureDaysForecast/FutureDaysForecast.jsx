@@ -2,8 +2,9 @@ import React from 'react';
 import { FlatList, Image, SafeAreaView } from 'react-native';
 import { Col, Grid } from 'react-native-easy-grid';
 
-import Text from '../../../../../components/Text/PlainText.jsx';
-import useWeatherStore from '../../../../../stores/weatherStore.js';
+import Text from '@components/Text/PlainText.jsx';
+import useWeatherStore from '@stores/weatherStore.js';
+
 import styles from './styles.js';
 
 const FutureDaysForecast = () => {

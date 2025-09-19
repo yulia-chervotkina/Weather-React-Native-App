@@ -3,13 +3,14 @@ import { Image, View } from 'react-native';
 import { Col, Grid, Row } from 'react-native-easy-grid';
 import GetLocation from 'react-native-get-location';
 
-import Humidity from '../../../../assets/icons/humidity.svg';
-import Percip from '../../../../assets/icons/percip.svg';
-import UV from '../../../../assets/icons/uv.svg';
-import Wind from '../../../../assets/icons/wind.svg';
-import Text from '../../../../components/Text/PlainText.jsx';
-import useLocationStore from '../../../../stores/locationStore.js';
-import useWeatherStore from '../../../../stores/weatherStore.js';
+import Humidity from '@assets/icons/humidity.svg';
+import Percip from '@assets/icons/percip.svg';
+import UV from '@assets/icons/uv.svg';
+import Wind from '@assets/icons/wind.svg';
+import Text from '@components/Text/PlainText.jsx';
+import useLocationStore from '@stores/locationStore.js';
+import useWeatherStore from '@stores/weatherStore.js';
+
 import styles from './styles.js';
 
 const CurrentWeather = () => {

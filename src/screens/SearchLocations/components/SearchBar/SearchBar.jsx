@@ -1,13 +1,14 @@
-import { useNavigation } from '@react-navigation/native';
 import { useCallback, useEffect, useState } from 'react';
 import { FlatList, TextInput, View } from 'react-native';
 
-import Add from '../../../../assets/icons/add.svg';
-import LocationRow from '../../../../components/LocationRow/LocationRow.jsx';
-import Text from '../../../../components/Text/PlainText.jsx';
-import useAutocompleteStore from '../../../../stores/autocompleteStore.js';
-import useLocationStore from '../../../../stores/locationStore.js';
-import useStarredLocationsStore from '../../../../stores/starredLocationsStore.js';
+import Add from '@assets/icons/add.svg';
+import LocationRow from '@components/LocationRow/LocationRow.jsx';
+import Text from '@components/Text/PlainText.jsx';
+import { useNavigation } from '@react-navigation/native';
+import useAutocompleteStore from '@stores/autocompleteStore.js';
+import useLocationStore from '@stores/locationStore.js';
+import useStarredLocationsStore from '@stores/starredLocationsStore.js';
+
 import styles from './styles.js';
 
 const SearchBar = () => {

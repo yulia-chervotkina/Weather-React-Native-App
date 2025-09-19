@@ -1,8 +1,9 @@
 import React from 'react';
 import { FlatList, Image, View } from 'react-native';
 
-import Text from '../../../../../components/Text/PlainText.jsx';
-import useWeatherStore from '../../../../../stores/weatherStore.js';
+import Text from '@components/Text/PlainText.jsx';
+import useWeatherStore from '@stores/weatherStore.js';
+
 import styles from './styles.js';
 
 const HourlyForecast = () => {

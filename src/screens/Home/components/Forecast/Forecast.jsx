@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { View } from 'react-native';
 
-import Text from '../../../../components/Text/PlainText.jsx';
-import useLocationStore from '../../../../stores/locationStore.js';
-import useWeatherStore from '../../../../stores/weatherStore.js';
+import Text from '@components/Text/PlainText.jsx';
+import useLocationStore from '@stores/locationStore.js';
+import useWeatherStore from '@stores/weatherStore.js';
+
 import FutureDaysForecast from './FutureDaysForecast/FutureDaysForecast.jsx';
 import HourlyForecast from './HourlyForecast/HourlyForecast.jsx';
 

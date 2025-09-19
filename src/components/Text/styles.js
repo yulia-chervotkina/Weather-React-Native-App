@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { getFontFamily } from '../../utils/fontFamily.js';
+import { getFontFamily } from '@utils/fontFamily.js';
 
 const styles = StyleSheet.create({
     plainText: {
