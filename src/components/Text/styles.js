@@ -1,13 +1,15 @@
 import { StyleSheet } from 'react-native';
 
+import colors from '@assets/colors';
+import fontSize from '@assets/fontSize';
 import { getFontFamily } from '@utils/fontFamily.js';
 
 const styles = StyleSheet.create({
     plainText: {
-        fontSize: 18,
+        fontSize: fontSize.small,
         fontFamily: getFontFamily('normal'),
-        color: 'white',
-        textShadowColor: '#4A91FF',
+        color: colors.text,
+        textShadowColor: colors.textShadow,
         textShadowOffset: { width: 0, height: 1 },
         textShadowRadius: 3,
     },

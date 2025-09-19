@@ -1,5 +1,8 @@
 import { StyleSheet } from 'react-native';
 
+import colors from '@assets/colors';
+import fontSize from '@assets/fontSize';
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -8,13 +11,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 5,
         marginBottom: 10,
-        shadowColor: '#176ff5ff',
+        shadowColor: colors.containerShadow,
         shadowOffset: { width: -3, height: 4 },
         shadowRadius: 6,
         shadowOpacity: 0.7,
         elevation: 24,
         borderRadius: 20,
-        backgroundColor: 'rgba(255, 255, 255, 0.25)',
+        backgroundColor: colors.containerBackground,
     },
     gridContainer: {
         flexDirection: 'column',
@@ -32,13 +35,13 @@ const styles = StyleSheet.create({
         height: 64,
     },
     condition: {
-        fontSize: 24,
+        fontSize: fontSize.medium,
     },
     day: {
         padding: 10,
     },
     temperature: {
-        fontSize: 100,
+        fontSize: fontSize.large,
     },
 });
 

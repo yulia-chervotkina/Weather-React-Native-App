@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { RefreshControl, ScrollView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
+import colors from '@assets/colors.js';
+
 import CurrentWeather from '../components/CurrentWeather/CurrentWeather.jsx';
 import FauxButton from '../components/FauxButton/FauxButton.jsx';
 import Forecast from '../components/Forecast/Forecast.jsx';
 import styles from './styles.js';
 
-// массив сюда
 const HomeScreen = () => {
     const [refreshing, setRefreshing] = useState(false);
 
@@ -20,10 +21,7 @@ const HomeScreen = () => {
     }, []);
 
     return (
-        <LinearGradient
-            colors={['#47BFDF', '#4A91FF']} // если это не примитив и я заранее знаю, что там должно быть - убрать вне компонента
-            style={styles.linearGradient}
-        >
+        <LinearGradient colors={colors.gradient} style={styles.linearGradient}>
             <ScrollView
                 contentContainerStyle={styles.container}
                 refreshControl={

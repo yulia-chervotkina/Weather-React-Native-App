@@ -1,5 +1,8 @@
 import { StyleSheet } from 'react-native';
 
+import colors from '@assets/colors';
+import fontSize from '@assets/fontSize';
+
 const styles = StyleSheet.create({
     button: {
         display: 'flex',
@@ -12,10 +15,10 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         backgroundColor: 'transparent',
         borderStyle: 'solid',
-        borderColor: '#4a92ff5e',
+        borderColor: colors.border,
         borderWidth: 1.5,
         borderRadius: 30,
-        shadowColor: '#4A91FF',
+        shadowColor: colors.textShadow,
         shadowOffset: {
             width: -1,
             height: 2,
@@ -25,7 +28,7 @@ const styles = StyleSheet.create({
         elevation: 15,
     },
     text: {
-        fontSize: 25,
+        fontSize: fontSize.medium,
         paddingTop: 5,
         marginLeft: 7,
     },
