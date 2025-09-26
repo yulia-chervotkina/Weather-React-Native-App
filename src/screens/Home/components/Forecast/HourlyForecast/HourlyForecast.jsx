@@ -1,4 +1,3 @@
-import React from 'react';
 import { FlatList, Image, View } from 'react-native';
 
 import Text from '@components/Text/PlainText.jsx';

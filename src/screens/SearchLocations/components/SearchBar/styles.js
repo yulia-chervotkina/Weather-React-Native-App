@@ -19,13 +19,6 @@ const styles = StyleSheet.create({
         textShadowOffset: { width: 0, height: 1 },
         textShadowRadius: 3,
     },
-    button: {
-        margin: 10,
-        paddingHorizontal: 20,
-        paddingVertical: 15,
-        backgroundColor: colors.addButton,
-        borderRadius: 40,
-    },
 });
 
 export default styles;

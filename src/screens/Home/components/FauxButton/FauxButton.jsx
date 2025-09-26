@@ -5,14 +5,11 @@ import Geopoint from '@assets/icons/location.svg';
 import Star from '@assets/icons/star.svg';
 import Text from '@components/Text/PlainText.jsx';
 import { useNavigation } from '@react-navigation/native';
-import useLocationStore from '@stores/locationStore.js';
 
 import styles from './styles.js';
 
-const FauxButton = () => {
-    const { currentCity, searchedCity } = useLocationStore();
+const FauxButton = ({ label }) => {
     const navigation = useNavigation();
-    const activeCity = searchedCity || currentCity;
     return (
         <Grid>
             <Row style={styles.button}>
@@ -21,14 +18,14 @@ const FauxButton = () => {
                 </Col>
                 <Col size={80}>
                     <TouchableOpacity
-                        onPress={() => navigation.popTo('Search')}
+                        onPress={() => navigation.navigate('Search')}
                     >
-                        <Text style={styles.text}>{activeCity}</Text>
+                        <Text style={styles.text}>{label}</Text>
                     </TouchableOpacity>
                 </Col>
                 <Col size={10}>
                     <TouchableOpacity
-                        onPress={() => navigation.popTo('Starred')}
+                        onPress={() => navigation.navigate('Starred')}
                     >
                         <Star />
                     </TouchableOpacity>

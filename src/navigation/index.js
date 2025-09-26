@@ -1,12 +1,12 @@
 import { createStaticNavigation } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import HomeScreen from '../screens/Home/HomeScreen/HomeScreen.jsx';
 import SearchLocationsScreen from '../screens/SearchLocations/SearchLocationsScreen/SearchLocationsScreen.jsx';
 import StarredLocationsScreen from '../screens/StarredLocations/StarredLocationsScreen/StarredLocationsScreen.jsx';
 
-const RootStack = createStackNavigator({
-    detachInactiveScreens: true,
+const RootStack = createNativeStackNavigator({
+    initialRouteName: 'Home',
     screenOptions: {
         headerStyle: {
             backgroundColor: '#47BFDF',

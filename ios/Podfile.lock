@@ -2833,15 +2833,15 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  boost: 964b8bbd2aa7d6d3b730a3615f91f3f00b6623e1
+  boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
   BVLinearGradient: cb006ba232a1f3e4f341bb62c42d1098c284da70
-  DoubleConversion: e150acac717411dfb7bb4e466858c1f8883d62b2
-  fast_float: cd7f882e70d6829c8a889860e17f4d51f18f3e80
+  DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
+  fast_float: b32c788ed9c6a8c584d114d0047beda9664e7cc6
   FBLazyVector: 86588b5a1547e7a417942a08f49559b184e002c8
-  fmt: 9bb9d78c5f73e2328a67bfa63f6e63fea765e0fb
-  glog: aca7f11b07e47785646b40489be607d314fa05ac
-  hermes-engine: 7d6d1969ffd16d536e8c147b389d44c3231212f8
-  RCT-Folly: b867b90dcfde835908e69d03f6d3592d21e0ae3b
+  fmt: a40bb5bd0294ea969aaaba240a927bd33d878cdd
+  glog: 5683914934d5b6e4240e497e0f4a3b42d1854183
+  hermes-engine: bbc1152da7d2d40f9e59c28acc6576fcf5d28e2a
+  RCT-Folly: 846fda9475e61ec7bcbf8a3fe81edfcaeb090669
   RCTDeprecation: 300c5eb91114d4339b0bb39505d0f4824d7299b7
   RCTRequired: e0446b01093475b7082fbeee5d1ef4ad1fe20ac4
   RCTTypeSafety: cb974efcdc6695deedf7bf1eb942f2a0603a063f

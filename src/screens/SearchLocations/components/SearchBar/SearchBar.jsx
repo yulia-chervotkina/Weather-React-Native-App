@@ -1,81 +1,49 @@
-import { useCallback, useEffect, useState } from 'react';
-import { FlatList, TextInput, View } from 'react-native';
+import { useEffect, useMemo } from 'react';
+import { TextInput, View } from 'react-native';
 
-import Add from '@assets/icons/add.svg';
-import LocationRow from '@components/LocationRow/LocationRow.jsx';
+import debounce from 'lodash/debounce.js';
+
 import Text from '@components/Text/PlainText.jsx';
-import { useNavigation } from '@react-navigation/native';
 import useAutocompleteStore from '@stores/autocompleteStore.js';
-import useLocationStore from '@stores/locationStore.js';
-import useStarredLocationsStore from '@stores/starredLocationsStore.js';
 
 import styles from './styles.js';
 
 const SearchBar = () => {
-    const [location, setLocation] = useState('');
-    const [locationIsSelected, setLocationIsSelected] = useState(false);
-    let { result, searchLocation, loading, error } = useAutocompleteStore();
-    const { setSearchedCity } = useLocationStore();
-    const { addLocation } = useStarredLocationsStore();
-    const navigation = useNavigation();
+    const { searchLocation, loading, error, setLocationIsSelected } =
+        useAutocompleteStore();
+
+    const onSearch = useMemo(
+        () =>
+            debounce(location => {
+                searchLocation(location);
+            }, 500),
+        [searchLocation],
+    );
 
     useEffect(() => {
-        const timeout = setTimeout(() => {
-            searchLocation(location);
-        }, 400);
-        return () => clearTimeout(timeout);
-    }, [location, searchLocation]);
+        return () => {
+            onSearch.cancel();
+            setLocationIsSelected(false);
+        };
+    }, [onSearch, setLocationIsSelected]);
 
-    const handleSelectLocation = useCallback(
-        name => {
-            setSearchedCity(name);
-            setLocation(name);
-            setLocationIsSelected(true);
-            navigation.popTo('Home');
-        },
-        [setSearchedCity, setLocation, setLocationIsSelected, navigation],
-    );
+    const handleChange = text => {
+        onSearch(text);
+        setLocationIsSelected(false);
+    };
 
     return (
         <View>
             <TextInput
                 style={styles.searchBar}
                 autoFocus
-                // value={location}
                 placeholder="Type here to find a city!"
                 placeholderTextColor="white"
-                onChangeText={text => {
-                    setLocation(text);
-                    setLocationIsSelected(false);
-                }}
+                onChangeText={handleChange}
             />
 
             {loading ? <Text>Loading...</Text> : null}
             {error ? <Text>{error}</Text> : null}
-
-            {!locationIsSelected ? ( // тут перевернуть
-                <FlatList
-                    data={result || []}
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item, index }) => {
-                        return (
-                            <LocationRow
-                                label={`${item.name}, ${item.country}`}
-                                onPressLocation={() =>
-                                    handleSelectLocation(item.name)
-                                }
-                                onPressButton={() => {
-                                    addLocation(
-                                        `${item.name}, ${item.country}`,
-                                    );
-                                    handleSelectLocation(item.name);
-                                }}
-                                button={<Add style={styles.button} />}
-                            />
-                        );
-                    }}
-                />
-            ) : null}
         </View>
     );
 };

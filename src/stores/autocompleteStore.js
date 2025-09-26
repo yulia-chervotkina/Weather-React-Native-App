@@ -6,6 +6,12 @@ const useAutocompleteStore = create(set => ({
     result: [],
     loading: false,
     error: null,
+    locationIsSelected: false,
+
+    setLocationIsSelected: boolean => {
+        set({ locationIsSelected: boolean });
+        if ({ locationIsSelected: false }) set({ result: null });
+    },
 
     searchLocation: async location => {
         if (!location) return set({ result: [] });

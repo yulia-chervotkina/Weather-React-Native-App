@@ -1,4 +1,3 @@
-import React from 'react';
 import { FlatList, Image, SafeAreaView } from 'react-native';
 import { Col, Grid } from 'react-native-easy-grid';
 
