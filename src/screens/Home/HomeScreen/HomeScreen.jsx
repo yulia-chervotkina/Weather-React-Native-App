@@ -61,8 +61,8 @@ const HomeScreen = () => {
                     <RefreshControl
                         refreshing={refreshing}
                         onRefresh={onRefresh}
-                        colors={['grey']}
-                        tintColor="black"
+                        colors={colors.topOfGradient}
+                        tintColor={colors.border}
                         bounces={!refreshing}
                     />
                 }

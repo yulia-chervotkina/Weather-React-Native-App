@@ -5,7 +5,9 @@ import Humidity from '@assets/icons/humidity.svg';
 import Percip from '@assets/icons/percip.svg';
 import UV from '@assets/icons/uv.svg';
 import Wind from '@assets/icons/wind.svg';
+import DataStatus from '@components/DataStatus.jsx';
 import Text from '@components/Text/PlainText.jsx';
+import { months } from '@constants/calendarData.js';
 import useWeatherStore from '@stores/weatherStore.js';
 
 import styles from './styles.js';
@@ -15,24 +17,8 @@ const CurrentWeather = () => {
 
     const now = new Date();
     const day = now.getDate();
-    const months = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
-    ];
     const month = months[now.getMonth()];
 
-    if (loading) return <Text>Loading ...</Text>;
-    if (error) return <Text>Error: {error}</Text>;
     if (!weather) return <Text>Couldn't fetch data</Text>;
 
     const { condition, temp_c } = weather.current;
@@ -41,6 +27,11 @@ const CurrentWeather = () => {
 
     return (
         <View style={styles.container}>
+            <DataStatus
+                // weatherData={weather}
+                loading={loading}
+                error={error}
+            />
             <Text style={styles.day}>
                 Today, {day} {month}
             </Text>

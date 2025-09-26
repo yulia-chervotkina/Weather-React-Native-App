@@ -1,5 +1,6 @@
 import { View } from 'react-native';
 
+import DataStatus from '@components/DataStatus.jsx';
 import Text from '@components/Text/PlainText.jsx';
 import useWeatherStore from '@stores/weatherStore.js';
 
@@ -9,12 +10,11 @@ import HourlyForecast from './HourlyForecast/HourlyForecast.jsx';
 const Forecast = () => {
     const { forecast, error, loading } = useWeatherStore();
 
-    if (loading) return <Text>Loading ...</Text>;
-    if (error) return <Text>Error: {error}</Text>;
     if (!forecast) return <Text>Couldn't fetch data</Text>;
 
     return (
         <View>
+            <DataStatus loading={loading} error={error} />
             <HourlyForecast />
             <FutureDaysForecast />
         </View>

@@ -3,6 +3,7 @@ import { TextInput, View } from 'react-native';
 
 import debounce from 'lodash/debounce.js';
 
+import colors from '@assets/colors.js';
 import Text from '@components/Text/PlainText.jsx';
 import useAutocompleteStore from '@stores/autocompleteStore.js';
 
@@ -13,10 +14,7 @@ const SearchBar = () => {
         useAutocompleteStore();
 
     const onSearch = useMemo(
-        () =>
-            debounce(location => {
-                searchLocation(location);
-            }, 500),
+        () => debounce(location => searchLocation(location), 500),
         [searchLocation],
     );
 
@@ -38,7 +36,7 @@ const SearchBar = () => {
                 style={styles.searchBar}
                 autoFocus
                 placeholder="Type here to find a city!"
-                placeholderTextColor="white"
+                placeholderTextColor={colors.text}
                 onChangeText={handleChange}
             />
 

@@ -1,10 +1,11 @@
 import { useCallback } from 'react';
 import { FlatList, View } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
+
 import Remove from '@assets/icons/remove.svg';
 import LocationRow from '@components/LocationRow/LocationRow.jsx';
 import Text from '@components/Text/PlainText.jsx';
-import { useNavigation } from '@react-navigation/native';
 import useLocationStore from '@stores/locationStore.js';
 import useStarredLocationsStore from '@stores/starredLocationsStore.js';
 

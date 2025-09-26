@@ -1,26 +1,22 @@
+import { useCallback, useMemo } from 'react';
 import { FlatList, Image, SafeAreaView } from 'react-native';
 import { Col, Grid } from 'react-native-easy-grid';
 
 import Text from '@components/Text/PlainText.jsx';
+import { daysOfWeek } from '@constants/calendarData.js';
 import useWeatherStore from '@stores/weatherStore.js';
 
 import styles from './styles.js';
 
 const FutureDaysForecast = () => {
     const { forecast } = useWeatherStore();
-    const daysOfWeek = [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-    ];
 
-    const weatherDataArray = forecast.forecast.forecastday;
+    const weatherDataArray = useMemo(
+        () => forecast.forecast.forecastday,
+        [forecast.forecast.forecastday],
+    );
 
-    const renderItem = ({ item }) => {
+    const renderItem = useCallback(({ item }) => {
         return (
             <Grid>
                 <Col size={40}>
@@ -46,7 +42,7 @@ const FutureDaysForecast = () => {
                 </Col>
             </Grid>
         );
-    };
+    }, []);
 
     return (
         <SafeAreaView style={styles.container}>

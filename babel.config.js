@@ -15,10 +15,12 @@ module.exports = {
                     '.json',
                 ],
                 alias: {
-                    '@components': './src/components/',
+                    '@components': './src/components',
                     '@utils': './src/utils',
                     '@stores': './src/stores',
                     '@assets': './src/assets',
+                    '@screens': './src/screens',
+                    '@constants': './src/constants',
                 },
             },
         ],
