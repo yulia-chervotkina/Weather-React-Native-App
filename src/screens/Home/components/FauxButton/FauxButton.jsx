@@ -1,11 +1,10 @@
+import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native';
 import { Col, Grid, Row } from 'react-native-easy-grid';
 
-import { useNavigation } from '@react-navigation/native';
-
-import Geopoint from '@assets/icons/location.svg';
-import Star from '@assets/icons/star.svg';
-import Text from '@components/Text/PlainText.jsx';
+import Geopoint from '@/assets/icons/location.svg';
+import Star from '@/assets/icons/star.svg';
+import Text from '@/components/Text/PlainText.jsx';
 
 import styles from './styles.js';
 

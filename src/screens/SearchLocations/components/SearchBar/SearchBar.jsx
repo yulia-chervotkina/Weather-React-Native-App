@@ -1,11 +1,10 @@
+import debounce from 'lodash/debounce.js';
 import { useEffect, useMemo } from 'react';
 import { TextInput, View } from 'react-native';
 
-import debounce from 'lodash/debounce.js';
-
-import colors from '@assets/colors.js';
-import Text from '@components/Text/PlainText.jsx';
-import useAutocompleteStore from '@stores/autocompleteStore.js';
+import colors from '@/assets/colors.js';
+import Text from '@/components/Text/PlainText.jsx';
+import useAutocompleteStore from '@/stores/autocompleteStore.js';
 
 import styles from './styles.js';
 
@@ -14,7 +13,7 @@ const SearchBar = () => {
         useAutocompleteStore();
 
     const onSearch = useMemo(
-        () => debounce(location => searchLocation(location), 500),
+        () => debounce(searchLocation, 500),
         [searchLocation],
     );
 

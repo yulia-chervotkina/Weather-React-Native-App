@@ -1,15 +1,22 @@
-import { useCallback } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { useCallback, useMemo } from 'react';
 import { FlatList, View } from 'react-native';
 
-import { useNavigation } from '@react-navigation/native';
-
-import Remove from '@assets/icons/remove.svg';
-import LocationRow from '@components/LocationRow/LocationRow.jsx';
-import Text from '@components/Text/PlainText.jsx';
-import useLocationStore from '@stores/locationStore.js';
-import useStarredLocationsStore from '@stores/starredLocationsStore.js';
+import Remove from '@/assets/icons/remove.svg';
+import LocationRow from '@/components/LocationRow/LocationRow.jsx';
+import Text from '@/components/Text/PlainText.jsx';
+import useLocationStore from '@/stores/locationStore.js';
+import useStarredLocationsStore from '@/stores/starredLocationsStore.js';
 
 import styles from './styles.js';
+
+const ListEmptyComponent = () => (
+    <View style={styles.container}>
+        <Text>No favorite locations</Text>
+    </View>
+);
+
+const keyExtractor = item => item.date;
 
 const StarredLocations = () => {
     const starredLocations = useStarredLocationsStore(
@@ -18,7 +25,10 @@ const StarredLocations = () => {
 
     const { removeLocation } = useStarredLocationsStore();
     const { setSearchedCity } = useLocationStore();
-    const locationsArray = Array.from(starredLocations);
+    const locationsArray = useMemo(
+        () => Array.from(starredLocations),
+        [starredLocations],
+    );
     const navigation = useNavigation();
 
     const renderItem = useCallback(
@@ -36,23 +46,14 @@ const StarredLocations = () => {
         [navigation, removeLocation, setSearchedCity],
     );
 
-    const listEmptyComponent = useCallback(
-        () => (
-            <View style={styles.container}>
-                <Text>No favorite locations</Text>
-            </View>
-        ),
-        [],
-    );
-
     return (
         <View style={styles.container}>
             <Text style={styles.header}>Favorite locations</Text>
             <FlatList
                 data={locationsArray}
-                keyExtractor={(item, index) => index.toString()}
+                keyExtractor={keyExtractor}
                 renderItem={renderItem}
-                ListEmptyComponent={listEmptyComponent}
+                ListEmptyComponent={ListEmptyComponent}
             />
         </View>
     );

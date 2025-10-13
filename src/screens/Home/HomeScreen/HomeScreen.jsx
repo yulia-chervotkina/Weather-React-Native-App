@@ -3,9 +3,9 @@ import { RefreshControl, ScrollView } from 'react-native';
 import GetLocation from 'react-native-get-location';
 import LinearGradient from 'react-native-linear-gradient';
 
-import colors from '@assets/colors.js';
-import useLocationStore from '@stores/locationStore.js';
-import useWeatherStore from '@stores/weatherStore.js';
+import colors from '@/assets/colors.js';
+import useLocationStore from '@/stores/locationStore.js';
+import useWeatherStore from '@/stores/weatherStore.js';
 
 import CurrentWeather from '../components/CurrentWeather/CurrentWeather.jsx';
 import FauxButton from '../components/FauxButton/FauxButton.jsx';
@@ -15,6 +15,7 @@ import styles from './styles.js';
 const HomeScreen = () => {
     const { weather, fetchWeather, fetchForecast } = useWeatherStore();
     const { currentCity, searchedCity, setCurrentCity } = useLocationStore();
+    const [refreshing, setRefreshing] = useState(false);
 
     useEffect(() => {
         if (!currentCity) {
@@ -41,8 +42,6 @@ const HomeScreen = () => {
             fetchForecast(activeCity);
         }
     }, [activeCity, fetchForecast, fetchWeather]);
-
-    const [refreshing, setRefreshing] = useState(false);
 
     const onRefresh = useCallback(() => {
         fetchWeather(activeCity);

@@ -3,15 +3,7 @@ module.exports = {
     singleQuote: true,
     trailingComma: 'all',
     tabWidth: 4,
-    importOrder: [
-        '^react',
-        '^react-native',
-        '@react',
-        '@react-native',
-        '^[a-zA-Z]',
-        '^@?\\w',
-        '^[./]',
-    ],
+    importOrder: ['^(?!(@/|./|../))', '^[@/]', '^[../]', '^[./]'],
     importOrderSeparation: true,
     importOrderSortSpecifiers: true,
 };

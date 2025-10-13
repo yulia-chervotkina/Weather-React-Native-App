@@ -1,15 +1,16 @@
-import { useCallback } from 'react';
-import { FlatList, View } from 'react-native';
-
 import { useNavigation } from '@react-navigation/native';
+import { useCallback } from 'react';
+import { FlatList } from 'react-native';
 
-import Add from '@assets/icons/add.svg';
-import LocationRow from '@components/LocationRow/LocationRow.jsx';
-import useAutocompleteStore from '@stores/autocompleteStore.js';
-import useLocationStore from '@stores/locationStore.js';
-import useStarredLocationsStore from '@stores/starredLocationsStore';
+import Add from '@/assets/icons/add.svg';
+import LocationRow from '@/components/LocationRow/LocationRow.jsx';
+import useAutocompleteStore from '@/stores/autocompleteStore.js';
+import useLocationStore from '@/stores/locationStore.js';
+import useStarredLocationsStore from '@/stores/starredLocationsStore';
 
 import styles from './styles.js';
+
+const keyExtractor = (_, index) => index.toString();
 
 const SuggestedLocationsList = () => {
     const { result, setLocationIsSelected } = useAutocompleteStore();
@@ -42,14 +43,11 @@ const SuggestedLocationsList = () => {
         [addLocation, handleSelectLocation],
     );
 
-    const listEmptyComponent = useCallback(() => <View />, []);
-
     return (
         <FlatList
-            data={result || []}
-            keyExtractor={(item, index) => index.toString()}
+            data={result}
+            keyExtractor={keyExtractor}
             renderItem={renderItem}
-            ListEmptyComponent={listEmptyComponent}
         />
     );
 };

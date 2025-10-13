@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import colors from '@assets/colors.js';
+import colors from '@/assets/colors.js';
 
 import StarredLocations from '../StarredLocations/StarredLocations.jsx';
 import styles from './styles.js';

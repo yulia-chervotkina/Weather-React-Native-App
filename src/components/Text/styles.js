@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
 
-import colors from '@assets/colors';
-import fontSize from '@assets/fontSize';
-import { getFontFamily } from '@utils/fontFamily.js';
+import colors from '@/assets/colors';
+import fontSize from '@/assets/fontSize';
+import { getFontFamily } from '@/utils/fontFamily.js';
 
 const styles = StyleSheet.create({
     plainText: {
