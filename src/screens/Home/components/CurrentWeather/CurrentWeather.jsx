@@ -19,8 +19,6 @@ const CurrentWeather = () => {
     const day = now.getDate();
     const month = months[now.getMonth()];
 
-    console.log('Component CurrentWeather rerendered');
-
     if (loading || error || !weather) {
         return <DataStatus loading={loading} error={error} data={weather} />;
     }
