@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { RefreshControl, ScrollView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -13,18 +13,15 @@ import Forecast from '../components/Forecast/Forecast.jsx';
 import styles from './styles.js';
 
 const HomeScreen = () => {
-    const { weather, fetchWeather, fetchForecast } = useWeatherStore();
+    const { weather, fetchWeather, fetchForecast, loading } = useWeatherStore();
     const { location, searchedLocation, setLocation } = useLocationStore();
-    const [refreshing, setRefreshing] = useState(false);
 
     useEffect(() => {
         if (!location)
-            getUserLocation()
-                .then(loc => {
-                    const { latitude, longitude } = loc;
-                    setLocation({ latitude, longitude });
-                })
-                .catch(e => console.error(e.message));
+            getUserLocation().then(loc => {
+                const { latitude, longitude } = loc;
+                setLocation({ latitude, longitude });
+            });
     });
 
     const activeLocation = searchedLocation || location;
@@ -39,11 +36,9 @@ const HomeScreen = () => {
     const onRefresh = useCallback(() => {
         fetchWeather(activeLocation);
         fetchForecast(activeLocation);
-        setRefreshing(true);
-        setTimeout(() => {
-            setRefreshing(false);
-        }, 2000);
     }, [activeLocation, fetchForecast, fetchWeather]);
+
+    const isActuallyRefreshing = loading && !weather;
 
     return (
         <LinearGradient colors={colors.gradient} style={styles.linearGradient}>
@@ -51,11 +46,11 @@ const HomeScreen = () => {
                 contentContainerStyle={styles.container}
                 refreshControl={
                     <RefreshControl
-                        refreshing={refreshing}
+                        refreshing={isActuallyRefreshing}
                         onRefresh={onRefresh}
                         colors={colors.topOfGradient}
                         tintColor={colors.border}
-                        bounces={!refreshing}
+                        bounces={!isActuallyRefreshing}
                     />
                 }
             >

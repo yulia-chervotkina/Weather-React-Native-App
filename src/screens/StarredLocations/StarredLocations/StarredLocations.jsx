@@ -5,7 +5,7 @@ import { FlatList, View } from 'react-native';
 import Remove from '@/assets/icons/remove.svg';
 import LocationRow from '@/components/LocationRow/LocationRow.jsx';
 import Text from '@/components/Text/PlainText.jsx';
-import routes from '@/constants/routes.js';
+import { ROUTES } from '@/constants/routes.js';
 import useLocationStore from '@/stores/locationStore.js';
 import useStarredLocationsStore from '@/stores/starredLocationsStore.js';
 
@@ -38,7 +38,7 @@ const StarredLocations = () => {
                 label={item}
                 onPressLocation={() => {
                     setSearchedLocation({ city: item });
-                    navigation.popTo(routes.home);
+                    navigation.popTo(ROUTES.HOME);
                 }}
                 onPressButton={() => removeLocation(item)}
                 button={<Remove style={styles.button} />}

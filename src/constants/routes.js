@@ -1,8 +1,5 @@
-const routes = {
-    initialRouteName: 'Home',
-    home: 'Home',
-    search: 'Search',
-    starred: 'Starred',
+export const ROUTES = {
+    HOME: 'Home',
+    SEARCH: 'Search',
+    STARRED: 'Starred',
 };
-
-export default routes;

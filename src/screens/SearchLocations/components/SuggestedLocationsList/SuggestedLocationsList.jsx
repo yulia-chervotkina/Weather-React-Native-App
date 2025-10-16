@@ -4,7 +4,7 @@ import { FlatList } from 'react-native';
 
 import Add from '@/assets/icons/add.svg';
 import LocationRow from '@/components/LocationRow/LocationRow.jsx';
-import routes from '@/constants/routes.js';
+import { ROUTES } from '@/constants/routes.js';
 import useAutocompleteStore from '@/stores/autocompleteStore.js';
 import useLocationStore from '@/stores/locationStore.js';
 import useStarredLocationsStore from '@/stores/starredLocationsStore';
@@ -23,7 +23,7 @@ const SuggestedLocationsList = () => {
         name => {
             setSearchedLocation({ city: name });
             setLocationIsSelected(true);
-            navigation.popTo(routes.home);
+            navigation.popTo(ROUTES.HOME);
         },
         [setSearchedLocation, setLocationIsSelected, navigation],
     );
