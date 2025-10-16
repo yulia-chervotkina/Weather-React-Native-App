@@ -5,6 +5,7 @@ import { FlatList, View } from 'react-native';
 import Remove from '@/assets/icons/remove.svg';
 import LocationRow from '@/components/LocationRow/LocationRow.jsx';
 import Text from '@/components/Text/PlainText.jsx';
+import routes from '@/constants/routes.js';
 import useLocationStore from '@/stores/locationStore.js';
 import useStarredLocationsStore from '@/stores/starredLocationsStore.js';
 
@@ -16,7 +17,7 @@ const ListEmptyComponent = () => (
     </View>
 );
 
-const keyExtractor = item => item.date;
+const keyExtractor = item => item;
 
 const StarredLocations = () => {
     const starredLocations = useStarredLocationsStore(
@@ -24,7 +25,7 @@ const StarredLocations = () => {
     );
 
     const { removeLocation } = useStarredLocationsStore();
-    const { setSearchedCity } = useLocationStore();
+    const { setSearchedLocation } = useLocationStore();
     const locationsArray = useMemo(
         () => Array.from(starredLocations),
         [starredLocations],
@@ -36,19 +37,19 @@ const StarredLocations = () => {
             <LocationRow
                 label={item}
                 onPressLocation={() => {
-                    setSearchedCity(item);
-                    navigation.popTo('Home');
+                    setSearchedLocation({ city: item });
+                    navigation.popTo(routes.home);
                 }}
                 onPressButton={() => removeLocation(item)}
                 button={<Remove style={styles.button} />}
             />
         ),
-        [navigation, removeLocation, setSearchedCity],
+        [navigation, removeLocation, setSearchedLocation],
     );
 
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>Favorite locations</Text>
+            <Text style={styles.header}>Starred locations</Text>
             <FlatList
                 data={locationsArray}
                 keyExtractor={keyExtractor}

@@ -19,49 +19,54 @@ const CurrentWeather = () => {
     const day = now.getDate();
     const month = months[now.getMonth()];
 
-    if (loading || error || !weather) {
-        return <DataStatus loading={loading} error={error} data={weather} />;
-    }
-
-    const { condition, temp_c } = weather.current;
-    const iconURL = 'https:' + weather.current.condition.icon;
-    const { uv, humidity, precip_mm, wind_kph } = weather.current;
-
     return (
-        <View style={styles.container}>
-            <Text style={styles.day}>
-                Today, {day} {month}
-            </Text>
-            <Image source={{ uri: iconURL }} style={styles.icon} />
-            <Text style={styles.temperature}>{Math.round(temp_c)}°C</Text>
-            <Text style={styles.condition}>{condition.text}</Text>
-            <Grid style={styles.gridContainer}>
-                <Col>
-                    <Row>
-                        <UV />
-                        <Text style={styles.text}>UV | {Math.round(uv)}</Text>
-                    </Row>
-                    <Row>
-                        <Humidity />
-                        <Text style={styles.text}>
-                            Hum | {Math.round(humidity)} %
+        <DataStatus loading={loading} error={error} data={weather}>
+            {data => {
+                const { condition, temp_c } = data.current;
+                const iconURL = 'https:' + data.current.condition.icon;
+                const { uv, humidity, precip_mm, wind_kph } = data.current;
+                return (
+                    <View style={styles.container}>
+                        <Text style={styles.day}>
+                            Today, {day} {month}
                         </Text>
-                    </Row>
-                    <Row>
-                        <Percip />
-                        <Text style={styles.text}>
-                            Percip | {Math.round(precip_mm)} mm
+                        <Image source={{ uri: iconURL }} style={styles.icon} />
+                        <Text style={styles.temperature}>
+                            {Math.round(temp_c)}°C
                         </Text>
-                    </Row>
-                    <Row>
-                        <Wind />
-                        <Text style={styles.text}>
-                            Wind | {Math.round(wind_kph)} km/h
-                        </Text>
-                    </Row>
-                </Col>
-            </Grid>
-        </View>
+                        <Text style={styles.condition}>{condition.text}</Text>
+                        <Grid style={styles.gridContainer}>
+                            <Col>
+                                <Row>
+                                    <UV />
+                                    <Text style={styles.text}>
+                                        UV | {Math.round(uv)}
+                                    </Text>
+                                </Row>
+                                <Row>
+                                    <Humidity />
+                                    <Text style={styles.text}>
+                                        Hum | {Math.round(humidity)} %
+                                    </Text>
+                                </Row>
+                                <Row>
+                                    <Percip />
+                                    <Text style={styles.text}>
+                                        Percip | {Math.round(precip_mm)} mm
+                                    </Text>
+                                </Row>
+                                <Row>
+                                    <Wind />
+                                    <Text style={styles.text}>
+                                        Wind | {Math.round(wind_kph)} km/h
+                                    </Text>
+                                </Row>
+                            </Col>
+                        </Grid>
+                    </View>
+                );
+            }}
+        </DataStatus>
     );
 };
 

@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { RefreshControl, ScrollView } from 'react-native';
-import GetLocation from 'react-native-get-location';
 import LinearGradient from 'react-native-linear-gradient';
 
 import colors from '@/assets/colors.js';
 import useLocationStore from '@/stores/locationStore.js';
 import useWeatherStore from '@/stores/weatherStore.js';
+import getUserLocation from '@/utils/getUserLocation.js';
 
 import CurrentWeather from '../components/CurrentWeather/CurrentWeather.jsx';
 import FauxButton from '../components/FauxButton/FauxButton.jsx';
@@ -14,43 +14,36 @@ import styles from './styles.js';
 
 const HomeScreen = () => {
     const { weather, fetchWeather, fetchForecast } = useWeatherStore();
-    const { currentCity, searchedCity, setCurrentCity } = useLocationStore();
+    const { location, searchedLocation, setLocation } = useLocationStore();
     const [refreshing, setRefreshing] = useState(false);
 
     useEffect(() => {
-        if (!currentCity) {
-            GetLocation.getCurrentPosition({
-                enableHighAccuracy: true,
-                timeout: 30000,
-            })
-                .then(async location => {
-                    const { latitude, longitude } = location;
-                    await fetchWeather(`${latitude},${longitude}`);
-                    if (weather) setCurrentCity(weather.location.name);
+        if (!location)
+            getUserLocation()
+                .then(loc => {
+                    const { latitude, longitude } = loc;
+                    setLocation({ latitude, longitude });
                 })
-                .catch(e => {
-                    console.warn(e.message);
-                });
-        }
-    }, [fetchWeather, currentCity, setCurrentCity, weather]);
+                .catch(e => console.error(e.message));
+    });
 
-    const activeCity = searchedCity || currentCity;
+    const activeLocation = searchedLocation || location;
 
     useEffect(() => {
-        if (activeCity) {
-            fetchWeather(activeCity);
-            fetchForecast(activeCity);
+        if (activeLocation) {
+            fetchWeather(activeLocation);
+            fetchForecast(activeLocation);
         }
-    }, [activeCity, fetchForecast, fetchWeather]);
+    }, [activeLocation, fetchForecast, fetchWeather]);
 
     const onRefresh = useCallback(() => {
-        fetchWeather(activeCity);
-        fetchForecast(activeCity);
+        fetchWeather(activeLocation);
+        fetchForecast(activeLocation);
         setRefreshing(true);
         setTimeout(() => {
             setRefreshing(false);
         }, 2000);
-    }, [activeCity, fetchForecast, fetchWeather]);
+    }, [activeLocation, fetchForecast, fetchWeather]);
 
     return (
         <LinearGradient colors={colors.gradient} style={styles.linearGradient}>
@@ -66,7 +59,7 @@ const HomeScreen = () => {
                     />
                 }
             >
-                <FauxButton label={activeCity} />
+                {weather ? <FauxButton label={weather.location.name} /> : null}
                 <CurrentWeather />
                 <Forecast />
             </ScrollView>

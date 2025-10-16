@@ -1,9 +1,9 @@
 import { create } from 'zustand';
 
 const useLocationStore = create()(set => ({
-    currentCity: null,
-    searchedCity: null,
-    setCurrentCity: newCity => set({ currentCity: newCity }),
-    setSearchedCity: newCity => set({ searchedCity: newCity }),
+    location: null,
+    searchedLocation: null,
+    setLocation: location => set({ location }),
+    setSearchedLocation: searchedLocation => set({ searchedLocation }),
 }));
 export default useLocationStore;

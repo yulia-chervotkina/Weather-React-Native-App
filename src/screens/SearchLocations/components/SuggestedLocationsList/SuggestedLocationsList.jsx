@@ -4,6 +4,7 @@ import { FlatList } from 'react-native';
 
 import Add from '@/assets/icons/add.svg';
 import LocationRow from '@/components/LocationRow/LocationRow.jsx';
+import routes from '@/constants/routes.js';
 import useAutocompleteStore from '@/stores/autocompleteStore.js';
 import useLocationStore from '@/stores/locationStore.js';
 import useStarredLocationsStore from '@/stores/starredLocationsStore';
@@ -14,17 +15,17 @@ const keyExtractor = (_, index) => index.toString();
 
 const SuggestedLocationsList = () => {
     const { result, setLocationIsSelected } = useAutocompleteStore();
-    const { setSearchedCity } = useLocationStore();
+    const { setSearchedLocation } = useLocationStore();
     const navigation = useNavigation();
     const { addLocation } = useStarredLocationsStore();
 
     const handleSelectLocation = useCallback(
         name => {
-            setSearchedCity(name);
+            setSearchedLocation({ city: name });
             setLocationIsSelected(true);
-            navigation.popTo('Home');
+            navigation.popTo(routes.home);
         },
-        [setSearchedCity, setLocationIsSelected, navigation],
+        [setSearchedLocation, setLocationIsSelected, navigation],
     );
     const renderItem = useCallback(
         ({ item }) => {

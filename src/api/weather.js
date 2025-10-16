@@ -10,9 +10,13 @@ const searchLocation = async location => {
     return response.json();
 };
 
-const fetchWeather = async city => {
+const fetchWeather = async ({ city, latitude, longitude }) => {
+    let q = city;
+    if (!q) {
+        q = `${latitude},${longitude}`;
+    }
     const response = await fetch(
-        `${BASE_URL}/current.json?key=${API_KEY}&q=${city}`,
+        `${BASE_URL}/current.json?key=${API_KEY}&q=${q}`,
     );
     if (!response.ok) {
         throw new Error("Couldn't load weather data");
@@ -20,9 +24,13 @@ const fetchWeather = async city => {
     return response.json();
 };
 
-const fetchForecast = async (city, days = 10) => {
+const fetchForecast = async ({ city, latitude, longitude }, days = 10) => {
+    let q = city;
+    if (!q) {
+        q = `${latitude},${longitude}`;
+    }
     const response = await fetch(
-        `${BASE_URL}/forecast.json?key=${API_KEY}&q=${city}&days=${days}`,
+        `${BASE_URL}/forecast.json?key=${API_KEY}&q=${q}&days=${days}`,
     );
     if (!response.ok) {
         throw new Error("Couldn't load weather data");

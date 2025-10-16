@@ -16,9 +16,9 @@ const RootStack = createNativeStackNavigator({
         headerTintColor: colors.text,
     },
     screens: {
-        Home: HomeScreen,
-        Search: SearchLocationsScreen,
-        Starred: StarredLocationsScreen,
+        [`${routes.home}`]: HomeScreen,
+        [`${routes.search}`]: SearchLocationsScreen,
+        [`${routes.starred}`]: StarredLocationsScreen,
     },
 });
 

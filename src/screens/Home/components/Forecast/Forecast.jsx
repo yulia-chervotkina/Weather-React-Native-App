@@ -9,15 +9,18 @@ import HourlyForecast from './HourlyForecast/HourlyForecast.jsx';
 const Forecast = () => {
     const { forecast, error, loading } = useWeatherStore();
 
-    if (loading || error || !forecast) {
-        return <DataStatus loading={loading} error={error} data={forecast} />;
-    }
-
     return (
-        <View>
-            <HourlyForecast />
-            <FutureDaysForecast />
-        </View>
+        <DataStatus loading={loading} error={error} data={forecast}>
+            {data => {
+                if (data)
+                    return (
+                        <View>
+                            <HourlyForecast />
+                            <FutureDaysForecast />
+                        </View>
+                    );
+            }}
+        </DataStatus>
     );
 };
 
