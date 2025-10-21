@@ -1,8 +1,17 @@
-const getNext24HoursForecast = forecast => {
-    const hourlyDataToday = forecast.forecast.forecastday[0].hour;
-    const hourlyDataTomorrow = forecast.forecast.forecastday[1].hour || [];
+type ForecastData = {
+        forecast: {
+            forecastday: { hour: { time: string }[] }[];
+        };
+        current: {
+            last_updated: string;
+        };
+}
 
-    const now = new Date(forecast.current.last_updated);
+const getNext24HoursForecast = ( data: ForecastData) => {
+    const hourlyDataToday = data.forecast.forecastday[0].hour;
+    const hourlyDataTomorrow = data.forecast.forecastday[1].hour || [];
+
+    const now = new Date(data.current.last_updated);
 
     const currentIndex = hourlyDataToday.findIndex(hourEntry => {
         const forecastTime = new Date(hourEntry.time);

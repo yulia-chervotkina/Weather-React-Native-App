@@ -1,6 +1,6 @@
 import { TouchableOpacity, View } from 'react-native';
 
-import Text from '../Text/PlainText.jsx';
+import Text from '../Text/PlainText.tsx';
 import styles from './styles.js';
 
 const LocationRow = ({ label, onPressLocation, onPressButton, button }) => {

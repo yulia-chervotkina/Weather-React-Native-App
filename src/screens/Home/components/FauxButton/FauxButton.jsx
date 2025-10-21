@@ -4,7 +4,7 @@ import { Col, Grid, Row } from 'react-native-easy-grid';
 
 import Geopoint from '@/assets/icons/location.svg';
 import Star from '@/assets/icons/star.svg';
-import Text from '@/components/Text/PlainText.jsx';
+import Text from '@/components/Text/PlainText.tsx';
 import { ROUTES } from '@/constants/routes.js';
 
 import styles from './styles.js';

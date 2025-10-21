@@ -1,4 +1,4 @@
-import Text from '@/components/Text/PlainText.jsx';
+import Text from '@/components/Text/PlainText.tsx';
 
 const DataStatus = ({ loading, error, data, children }) => {
     if (loading) return <Text>Loading ...</Text>;

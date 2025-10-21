@@ -6,7 +6,7 @@ import Percip from '@/assets/icons/percip.svg';
 import UV from '@/assets/icons/uv.svg';
 import Wind from '@/assets/icons/wind.svg';
 import DataStatus from '@/components/DataStatus.jsx';
-import Text from '@/components/Text/PlainText.jsx';
+import Text from '@/components/Text/PlainText.tsx';
 import { months } from '@/constants/calendarData.js';
 import useWeatherStore from '@/stores/weatherStore.js';
 

@@ -3,7 +3,7 @@ import { useEffect, useMemo } from 'react';
 import { TextInput, View } from 'react-native';
 
 import colors from '@/assets/colors.js';
-import Text from '@/components/Text/PlainText.jsx';
+import Text from '@/components/Text/PlainText.tsx';
 import useAutocompleteStore from '@/stores/autocompleteStore.js';
 
 import styles from './styles.js';
