@@ -5,8 +5,8 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     container: {
-        paddingLeft: '20',
-        paddingRight: '20',
+        paddingLeft: 20,
+        paddingRight: 20,
     },
 });
 

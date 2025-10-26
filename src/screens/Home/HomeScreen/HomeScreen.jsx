@@ -2,15 +2,15 @@ import { useCallback, useEffect } from 'react';
 import { RefreshControl, ScrollView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import colors from '@/assets/colors.js';
-import useLocationStore from '@/stores/locationStore.js';
-import useWeatherStore from '@/stores/weatherStore.js';
-import getUserLocation from '@/utils/getUserLocation.js';
+import colors from '@/assets/colors';
+import useLocationStore from '@/stores/locationStore';
+import useWeatherStore from '@/stores/weatherStore';
+import getUserLocation from '@/utils/getUserLocation';
 
-import CurrentWeather from '../components/CurrentWeather/CurrentWeather.jsx';
-import FauxButton from '../components/FauxButton/FauxButton.jsx';
-import Forecast from '../components/Forecast/Forecast.jsx';
-import styles from './styles.js';
+import CurrentWeather from '../components/CurrentWeather/CurrentWeather';
+import FauxButton from '../components/FauxButton/FauxButton';
+import Forecast from '../components/Forecast/Forecast';
+import styles from './styles';
 
 const HomeScreen = () => {
     const { weather, fetchWeather, fetchForecast, loading } = useWeatherStore();
@@ -18,6 +18,7 @@ const HomeScreen = () => {
 
     useEffect(() => {
         if (!location)
+            // TODO убрать в getUserLocation парсинг: then(setLocation) 
             getUserLocation().then(loc => {
                 const { latitude, longitude } = loc;
                 setLocation({ latitude, longitude });
@@ -25,6 +26,7 @@ const HomeScreen = () => {
     });
 
     const activeLocation = searchedLocation || location;
+    console.log("HomeScreen data: ", typeof activeLocation)
 
     useEffect(() => {
         if (activeLocation) {

@@ -1,16 +1,8 @@
-type ForecastData = {
-        forecast: {
-            forecastday: { hour: { time: string }[] }[];
-        };
-        current: {
-            last_updated: string;
-        };
-}
+import { ForecastData } from '@/types/types';
 
-const getNext24HoursForecast = ( data: ForecastData) => {
+const getNext24HoursForecast = (data: ForecastData) => {
     const hourlyDataToday = data.forecast.forecastday[0].hour;
     const hourlyDataTomorrow = data.forecast.forecastday[1].hour || [];
-
     const now = new Date(data.current.last_updated);
 
     const currentIndex = hourlyDataToday.findIndex(hourEntry => {

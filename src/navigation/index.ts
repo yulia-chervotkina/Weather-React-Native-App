@@ -2,7 +2,7 @@ import { createStaticNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import colors from '@/assets/colors';
-import { ROUTES } from '@/constants/routes.js';
+import { ROUTES } from '@/constants/routes';
 import HomeScreen from '@/screens/Home/HomeScreen/HomeScreen';
 import SearchLocationsScreen from '@/screens/SearchLocations/SearchLocationsScreen/SearchLocationsScreen';
 import StarredLocationsScreen from '@/screens/StarredLocations/StarredLocationsScreen/StarredLocationsScreen';

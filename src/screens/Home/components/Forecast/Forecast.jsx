@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 
-import DataStatus from '@/components/DataStatus.jsx';
-import useWeatherStore from '@/stores/weatherStore.js';
+import DataStatus from '@/components/DataStatus';
+import useWeatherStore from '@/stores/weatherStore';
 
 import FutureDaysForecast from './FutureDaysForecast/FutureDaysForecast.jsx';
 import HourlyForecast from './HourlyForecast/HourlyForecast.jsx';

@@ -3,10 +3,10 @@ import { FlatList, Image, SafeAreaView } from 'react-native';
 import { Col, Grid } from 'react-native-easy-grid';
 
 import Text from '@/components/Text/PlainText.tsx';
-import { daysOfWeek } from '@/constants/calendarData.js';
-import useWeatherStore from '@/stores/weatherStore.js';
+import { daysOfWeek } from '@/constants/calendarData';
+import useWeatherStore from '@/stores/weatherStore';
 
-import styles from './styles.js';
+import styles from './styles';
 
 const keyExtractor = item => item.date;
 

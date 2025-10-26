@@ -3,7 +3,17 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@/*": ["src/*"]
-        }
+            "@/*": ["src/*"],
+            "typeRoots": ["./src/types"]
+        },
+        "target": "es2016",
+        "outDir": "./dist",
+        "removeComments": true,
+        "noEmitOnError": true,
+        "sourceMap": true,
+        "strict": true,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
+        "noImplicitReturns": true
     }
 }

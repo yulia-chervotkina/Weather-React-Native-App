@@ -5,12 +5,12 @@ import Humidity from '@/assets/icons/humidity.svg';
 import Percip from '@/assets/icons/percip.svg';
 import UV from '@/assets/icons/uv.svg';
 import Wind from '@/assets/icons/wind.svg';
-import DataStatus from '@/components/DataStatus.jsx';
-import Text from '@/components/Text/PlainText.tsx';
-import { months } from '@/constants/calendarData.js';
-import useWeatherStore from '@/stores/weatherStore.js';
+import DataStatus from '@/components/DataStatus';
+import Text from '@/components/Text/PlainText';
+import { months } from '@/constants/calendarData';
+import useWeatherStore from '@/stores/weatherStore';
 
-import styles from './styles.js';
+import styles from './styles';
 
 const CurrentWeather = () => {
     const { weather, error, loading } = useWeatherStore();

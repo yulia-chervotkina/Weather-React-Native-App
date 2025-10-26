@@ -1,9 +1,16 @@
 import { TouchableOpacity, View } from 'react-native';
 
 import Text from '../Text/PlainText.tsx';
-import styles from './styles.js';
+import styles from './styles.ts';
 
-const LocationRow = ({ label, onPressLocation, onPressButton, button }) => {
+type LocationRowProps = {
+    label: string;
+    onPressLocation: ()=> void;
+    onPressButton: ()=> void;
+    button: React.ReactNode;
+}
+
+const LocationRow = ({ label, onPressLocation, onPressButton, button }: LocationRowProps) => {
     return (
         <View style={styles.locationRow}>
             <TouchableOpacity onPress={onPressLocation}>

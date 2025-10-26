@@ -1,10 +1,10 @@
 import { View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import colors from '@/assets/colors.js';
+import colors from '@/assets/colors';
 
 import StarredLocations from '../StarredLocations/StarredLocations.jsx';
-import styles from './styles.js';
+import styles from './styles';
 
 const StarredLocationsScreen = () => {
     return (

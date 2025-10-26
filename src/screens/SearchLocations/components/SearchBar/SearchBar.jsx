@@ -2,11 +2,11 @@ import debounce from 'lodash/debounce.js';
 import { useEffect, useMemo } from 'react';
 import { TextInput, View } from 'react-native';
 
-import colors from '@/assets/colors.js';
+import colors from '@/assets/colors';
 import Text from '@/components/Text/PlainText.tsx';
-import useAutocompleteStore from '@/stores/autocompleteStore.js';
+import useAutocompleteStore from '@/stores/autocompleteStore';
 
-import styles from './styles.js';
+import styles from './styles';
 
 const SearchBar = () => {
     const { searchLocation, loading, error, setLocationIsSelected } =

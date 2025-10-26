@@ -7,9 +7,9 @@ const styles = StyleSheet.create({
     button: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'start',
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        alignContent: 'start',
+        alignContent: 'flex-start',
         padding: 7,
         marginTop: 15,
         marginBottom: 15,

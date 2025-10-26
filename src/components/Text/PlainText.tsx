@@ -1,10 +1,10 @@
 import { StyleProp, Text, TextStyle } from 'react-native';
 
-import styles from './styles.js';
+import styles from './styles';
 import { FC, PropsWithChildren } from 'react';
 
 type PlainTextProps = {
-    style: StyleProp<TextStyle>;
+    style?: StyleProp<TextStyle>;
 }
 
 const PlainText: FC<PropsWithChildren<PlainTextProps>> = props => {

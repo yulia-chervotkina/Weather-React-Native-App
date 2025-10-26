@@ -1,20 +1,33 @@
 import { create } from 'zustand';
 
-import { fetchForecast, fetchWeather } from '../api/weather.js';
+import { Forecast, Weather } from '@/types/types';
 
-const useWeatherStore = create(set => ({
+import { FetchData } from '../api/types';
+import { fetchForecast, fetchWeather } from '../api/weather';
+
+type WeatherStore = {
+    weather: Weather | null;
+    forecast: Forecast | null;
+    loading: boolean;
+    error: unknown;
+    fetchWeather: (arg0: FetchData) => Promise<void>;
+    fetchForecast: (arg0: FetchData) => Promise<void>;
+};
+
+const useWeatherStore = create<WeatherStore>()(set => ({
     weather: null,
     forecast: null,
     loading: false,
     error: null,
 
     fetchWeather: async city => {
+        console.log('Store fetching city: ', city);
         set({ loading: true, error: null });
         try {
             const data = await fetchWeather(city);
             set({ weather: data, loading: false });
         } catch (error) {
-            set({ error: error.message, loading: false });
+            set({ error: error, loading: false });
         }
     },
 
@@ -24,7 +37,7 @@ const useWeatherStore = create(set => ({
             const data = await fetchForecast(city);
             set({ forecast: data, loading: false });
         } catch (error) {
-            set({ error: error.message, loading: false });
+            set({ error: error, loading: false });
         }
     },
 }));

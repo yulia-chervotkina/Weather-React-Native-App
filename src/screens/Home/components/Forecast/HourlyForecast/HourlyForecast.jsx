@@ -2,10 +2,10 @@ import { useCallback, useMemo } from 'react';
 import { FlatList, Image, View } from 'react-native';
 
 import Text from '@/components/Text/PlainText.tsx';
-import useWeatherStore from '@/stores/weatherStore.js';
+import useWeatherStore from '@/stores/weatherStore';
 import getNext24HoursForecast from '@/utils/getNext24HoursForecast.ts';
 
-import styles from './styles.js';
+import styles from './styles';
 
 const keyExtractor = item => item.time;
 

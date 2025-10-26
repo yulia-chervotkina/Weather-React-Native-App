@@ -3,13 +3,13 @@ import { useCallback, useMemo } from 'react';
 import { FlatList, View } from 'react-native';
 
 import Remove from '@/assets/icons/remove.svg';
-import LocationRow from '@/components/LocationRow/LocationRow.jsx';
-import Text from '@/components/Text/PlainText.tsx';
-import { ROUTES } from '@/constants/routes.js';
-import useLocationStore from '@/stores/locationStore.js';
-import useStarredLocationsStore from '@/stores/starredLocationsStore.js';
+import LocationRow from '@/components/LocationRow/LocationRow';
+import Text from '@/components/Text/PlainText';
+import { ROUTES } from '@/constants/routes';
+import useLocationStore from '@/stores/locationStore';
+import useStarredLocationsStore from '@/stores/starredLocationsStore';
 
-import styles from './styles.js';
+import styles from './styles';
 
 const ListEmptyComponent = () => (
     <View style={styles.container}>
