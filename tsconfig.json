@@ -1,0 +1,22 @@
+{
+    "extends": "@react-native/typescript-config",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"]
+        },
+        "target": "es2016",
+        "outDir": "./dist",
+        "removeComments": true,
+        "noEmitOnError": true,
+        "sourceMap": true,
+        "strict": true,
+        "strictNullChecks": true,
+        "moduleResolution": "bundler",
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
+        "noImplicitReturns": false,
+        "isolatedModules": false
+    },
+    "include": ["src/**/*", "custom.d.ts"]
+}
