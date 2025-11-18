@@ -13,18 +13,18 @@ import useWeatherStore from '@/stores/weatherStore';
 import styles from './styles';
 
 const CurrentWeather = () => {
-    const { weather, error, loading } = useWeatherStore();
+    const { forecast, error, loading } = useWeatherStore();
 
     const now = new Date();
     const day = now.getDate();
     const month = months[now.getMonth()];
 
     return (
-        <DataStatus loading={loading} error={error} data={weather}>
+        <DataStatus loading={loading} error={error} data={forecast}>
             {data => {
-                const { condition, temp_c } = data.current;
+                const { condition, temp_c, uv, humidity, precip_mm, wind_kph } =
+                    data.current;
                 const iconURL = 'https:' + data.current.condition.icon;
-                const { uv, humidity, precip_mm, wind_kph } = data.current;
                 return (
                     <View style={styles.container}>
                         <Text style={styles.day}>

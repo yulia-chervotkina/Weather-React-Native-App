@@ -3,8 +3,8 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import colors from '@/assets/colors';
 
-import SearchBar from '../components/SearchBar/SearchBar.jsx';
-import SuggestedLocationsList from '../components/SuggestedLocationsList/SuggestedLocationsList.jsx';
+import SearchBar from '../components/SearchBar/SearchBar';
+import SuggestedLocationsList from '../components/SuggestedLocationsList/SuggestedLocationsList';
 import styles from './styles';
 
 const SearchLocationsScreen = () => {

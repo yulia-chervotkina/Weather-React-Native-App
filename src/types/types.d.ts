@@ -1,9 +1,17 @@
-export type Location = {
+export type Coordinates = {
     latitude: number;
     longitude: number;
+    city?: undefined;
+};
+
+export type Location = {
+    name: string;
+    country: string;
 };
 
 export type SearchedLocation = {
+    latitude?: undefined;
+    longitude?: undefined;
     city: string;
 };
 
@@ -12,7 +20,7 @@ export type WeatherCondition = {
     icon: string;
 };
 
-export type CurrentWeather = {
+export type CurrentWeatherData = {
     last_updated: string;
     temp_c: number;
     condition: WeatherCondition;
@@ -24,7 +32,7 @@ export type CurrentWeather = {
 
 export type Weather = {
     location: { name: string; country?: string };
-    current: CurrentWeather;
+    current: CurrentWeatherData;
 };
 
 export type Hour = {
@@ -54,6 +62,7 @@ export type Forecast = {
 };
 
 export type ForecastData = {
-    current: CurrentWeather;
+    location: Location;
+    current: CurrentWeatherData;
     forecast: Forecast;
 };

@@ -3,8 +3,10 @@ import { View } from 'react-native';
 import DataStatus from '@/components/DataStatus';
 import useWeatherStore from '@/stores/weatherStore';
 
-import FutureDaysForecast from './FutureDaysForecast/FutureDaysForecast.jsx';
-import HourlyForecast from './HourlyForecast/HourlyForecast.jsx';
+import FutureDaysForecast from './FutureDaysForecast/FutureDaysForecast';
+import HourlyForecast from './HourlyForecast/HourlyForecast';
+
+// import type {ForecastData} from '@/types/types'
 
 const Forecast = () => {
     const { forecast, error, loading } = useWeatherStore();

@@ -5,12 +5,17 @@ import styles from './styles.ts';
 
 type LocationRowProps = {
     label: string;
-    onPressLocation: ()=> void;
-    onPressButton: ()=> void;
+    onPressLocation: () => void;
+    onPressButton: () => void;
     button: React.ReactNode;
-}
+};
 
-const LocationRow = ({ label, onPressLocation, onPressButton, button }: LocationRowProps) => {
+const LocationRow = ({
+    label,
+    onPressLocation,
+    onPressButton,
+    button,
+}: LocationRowProps) => {
     return (
         <View style={styles.locationRow}>
             <TouchableOpacity onPress={onPressLocation}>

@@ -3,8 +3,7 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@/*": ["src/*"],
-            "typeRoots": ["./src/types"]
+            "@/*": ["src/*"]
         },
         "target": "es2016",
         "outDir": "./dist",
@@ -12,8 +11,12 @@
         "noEmitOnError": true,
         "sourceMap": true,
         "strict": true,
+        "strictNullChecks": true,
+        "moduleResolution": "bundler",
         "noUnusedParameters": true,
         "noUnusedLocals": true,
-        "noImplicitReturns": true
-    }
+        "noImplicitReturns": false,
+        "isolatedModules": false
+    },
+    "include": ["src/**/*", "custom.d.ts"]
 }

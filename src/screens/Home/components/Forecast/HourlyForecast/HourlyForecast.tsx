@@ -1,13 +1,14 @@
 import { useCallback, useMemo } from 'react';
-import { FlatList, Image, View } from 'react-native';
+import { FlatList, Image, ListRenderItem, View } from 'react-native';
 
-import Text from '@/components/Text/PlainText.tsx';
+import Text from '@/components/Text/PlainText';
 import useWeatherStore from '@/stores/weatherStore';
-import getNext24HoursForecast from '@/utils/getNext24HoursForecast.ts';
+import type { Hour } from '@/types/types';
+import getNext24HoursForecast from '@/utils/getNext24HoursForecast';
 
 import styles from './styles';
 
-const keyExtractor = item => item.time;
+const keyExtractor = (item: Hour) => item.time;
 
 const HourlyForecast = () => {
     const { forecast } = useWeatherStore();
@@ -17,7 +18,7 @@ const HourlyForecast = () => {
         [forecast],
     );
 
-    const renderItem = useCallback(({ item }) => {
+    const renderItem: ListRenderItem<Hour> = useCallback(({ item }) => {
         return (
             <View style={styles.container}>
                 <Text>{Math.round(item.temp_c)} °C</Text>

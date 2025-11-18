@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 
-import { Location, SearchedLocation } from '@/types/types';
+import type { Coordinates, SearchedLocation } from '@/types/types';
 
 type LocationStore = {
-    location?: Location;
+    location?: Coordinates;
     searchedLocation?: SearchedLocation;
-    setLocation: (location: Location) => void;
+    setLocation: (location: Coordinates) => void;
     setSearchedLocation: (searchedLocation: SearchedLocation) => void;
 };
 

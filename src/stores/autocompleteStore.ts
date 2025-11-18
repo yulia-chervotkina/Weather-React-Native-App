@@ -1,13 +1,16 @@
 import { create } from 'zustand';
 
+import { Location } from '@/types/types';
+
 import { searchLocation } from '../api/weather';
 
 type AutocompleteStore = {
-    result: string[];
+    result: Location[];
     loading: boolean;
     error: unknown;
     locationIsSelected: boolean;
     setLocationIsSelected: (isLocationSelected: boolean) => void;
+    searchLocation: (arg0: string) => Promise<void>;
 };
 
 const useAutocompleteStore = create<AutocompleteStore>()(set => ({
@@ -21,12 +24,12 @@ const useAutocompleteStore = create<AutocompleteStore>()(set => ({
         if (!isLocationSelected) set({ result: [] });
     },
 
-    searchLocation: async (location: string): Promise<void> => {
+    searchLocation: async location => {
         if (!location) set({ result: [] });
         set({ loading: true, error: null });
         try {
             const data = await searchLocation(location);
-            set({ result: Array.isArray(data) ? data : [], loading: false });
+            set({ result: data, loading: false });
         } catch (error: unknown) {
             set({ error: error, loading: false, result: [] });
         }

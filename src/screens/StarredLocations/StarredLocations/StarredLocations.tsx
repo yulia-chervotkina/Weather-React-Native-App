@@ -1,15 +1,18 @@
 import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { useCallback, useMemo } from 'react';
 import { FlatList, View } from 'react-native';
 
 import Remove from '@/assets/icons/remove.svg';
 import LocationRow from '@/components/LocationRow/LocationRow';
 import Text from '@/components/Text/PlainText';
-import { ROUTES } from '@/constants/routes';
+import { ROUTES, RootStackParamList } from '@/navigation/types';
 import useLocationStore from '@/stores/locationStore';
 import useStarredLocationsStore from '@/stores/starredLocationsStore';
 
 import styles from './styles';
+
+type NavigationProp = StackNavigationProp<RootStackParamList>;
 
 const ListEmptyComponent = () => (
     <View style={styles.container}>
@@ -17,23 +20,21 @@ const ListEmptyComponent = () => (
     </View>
 );
 
-const keyExtractor = item => item;
+const keyExtractor = (item: string) => item;
 
 const StarredLocations = () => {
-    const starredLocations = useStarredLocationsStore(
-        state => state.starredLocations,
-    );
+    const starredLocations = useStarredLocationsStore();
 
     const { removeLocation } = useStarredLocationsStore();
     const { setSearchedLocation } = useLocationStore();
     const locationsArray = useMemo(
-        () => Array.from(starredLocations),
+        () => Array.from(starredLocations.starredLocations),
         [starredLocations],
     );
-    const navigation = useNavigation();
+    const navigation = useNavigation<NavigationProp>();
 
     const renderItem = useCallback(
-        ({ item }) => (
+        ({ item }: { item: string }) => (
             <LocationRow
                 label={item}
                 onPressLocation={() => {

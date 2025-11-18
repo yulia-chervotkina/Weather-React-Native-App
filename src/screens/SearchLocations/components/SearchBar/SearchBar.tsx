@@ -24,8 +24,8 @@ const SearchBar = () => {
         };
     }, [onSearch, setLocationIsSelected]);
 
-    const handleChange = text => {
-        onSearch(text);
+    const handleChange = async (text: string) => {
+        await onSearch(text);
         setLocationIsSelected(false);
     };
 
@@ -40,7 +40,7 @@ const SearchBar = () => {
             />
 
             {loading ? <Text>Loading...</Text> : null}
-            {error ? <Text>{error}</Text> : null}
+            {error ? <Text>{error instanceof Error}</Text> : null}
         </View>
     );
 };

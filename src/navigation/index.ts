@@ -2,12 +2,13 @@ import { createStaticNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import colors from '@/assets/colors';
-import { ROUTES } from '@/constants/routes';
 import HomeScreen from '@/screens/Home/HomeScreen/HomeScreen';
 import SearchLocationsScreen from '@/screens/SearchLocations/SearchLocationsScreen/SearchLocationsScreen';
 import StarredLocationsScreen from '@/screens/StarredLocations/StarredLocationsScreen/StarredLocationsScreen';
 
-const RootStack = createNativeStackNavigator({
+import { ROUTES, RootStackParamList } from './types';
+
+const RootStack = createNativeStackNavigator<RootStackParamList>({
     initialRouteName: ROUTES.HOME,
     screenOptions: {
         headerStyle: {

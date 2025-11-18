@@ -13,34 +13,33 @@ import Forecast from '../components/Forecast/Forecast';
 import styles from './styles';
 
 const HomeScreen = () => {
-    const { weather, fetchWeather, fetchForecast, loading } = useWeatherStore();
+    const { forecast, fetchForecast, loading } = useWeatherStore();
     const { location, searchedLocation, setLocation } = useLocationStore();
 
     useEffect(() => {
-        if (!location)
-            // TODO убрать в getUserLocation парсинг: then(setLocation) 
-            getUserLocation().then(loc => {
-                const { latitude, longitude } = loc;
-                setLocation({ latitude, longitude });
-            });
-    });
+        if (!location) {
+            (async () => {
+                const coordinates = await getUserLocation();
+                setLocation(coordinates);
+            })();
+        }
+    }, [location]);
 
     const activeLocation = searchedLocation || location;
-    console.log("HomeScreen data: ", typeof activeLocation)
 
     useEffect(() => {
         if (activeLocation) {
-            fetchWeather(activeLocation);
             fetchForecast(activeLocation);
         }
-    }, [activeLocation, fetchForecast, fetchWeather]);
+    }, [activeLocation, fetchForecast]);
 
     const onRefresh = useCallback(() => {
-        fetchWeather(activeLocation);
-        fetchForecast(activeLocation);
-    }, [activeLocation, fetchForecast, fetchWeather]);
+        if (activeLocation) {
+            fetchForecast(activeLocation);
+        }
+    }, [activeLocation, fetchForecast]);
 
-    const isActuallyRefreshing = loading && !weather;
+    const isActuallyRefreshing = loading && !forecast;
 
     return (
         <LinearGradient colors={colors.gradient} style={styles.linearGradient}>
@@ -50,13 +49,14 @@ const HomeScreen = () => {
                     <RefreshControl
                         refreshing={isActuallyRefreshing}
                         onRefresh={onRefresh}
-                        colors={colors.topOfGradient}
+                        colors={[colors.topOfGradient]}
                         tintColor={colors.border}
-                        bounces={!isActuallyRefreshing}
                     />
                 }
             >
-                {weather ? <FauxButton label={weather.location.name} /> : null}
+                {forecast ? (
+                    <FauxButton label={forecast.location.name} />
+                ) : null}
                 <CurrentWeather />
                 <Forecast />
             </ScrollView>

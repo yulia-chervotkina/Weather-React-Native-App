@@ -1,16 +1,23 @@
 import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { TouchableOpacity } from 'react-native';
 import { Col, Grid, Row } from 'react-native-easy-grid';
 
 import Geopoint from '@/assets/icons/location.svg';
 import Star from '@/assets/icons/star.svg';
-import Text from '@/components/Text/PlainText.tsx';
-import { ROUTES } from '@/constants/routes';
+import Text from '@/components/Text/PlainText';
+import { ROUTES, RootStackParamList } from '@/navigation/types';
 
 import styles from './styles';
 
-const FauxButton = ({ label }) => {
-    const navigation = useNavigation();
+type FauxButton = {
+    label: string;
+};
+
+type NavigationProp = StackNavigationProp<RootStackParamList>;
+
+const FauxButton = ({ label }: FauxButton) => {
+    const navigation = useNavigation<NavigationProp>();
     return (
         <Grid>
             <Row style={styles.button}>

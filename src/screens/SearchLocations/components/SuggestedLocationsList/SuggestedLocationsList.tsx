@@ -1,33 +1,38 @@
 import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { useCallback } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, ListRenderItem } from 'react-native';
 
 import Add from '@/assets/icons/add.svg';
 import LocationRow from '@/components/LocationRow/LocationRow';
-import { ROUTES } from '@/constants/routes';
+import { ROUTES, RootStackParamList } from '@/navigation/types';
 import useAutocompleteStore from '@/stores/autocompleteStore';
 import useLocationStore from '@/stores/locationStore';
 import useStarredLocationsStore from '@/stores/starredLocationsStore';
+import type { Location } from '@/types/types';
 
 import styles from './styles';
 
-const keyExtractor = (_, index) => index.toString();
+type NavigationProp = StackNavigationProp<RootStackParamList>;
+
+const keyExtractor = (_: unknown, index: number) => index.toString();
 
 const SuggestedLocationsList = () => {
     const { result, setLocationIsSelected } = useAutocompleteStore();
     const { setSearchedLocation } = useLocationStore();
-    const navigation = useNavigation();
+    const navigation = useNavigation<NavigationProp>();
     const { addLocation } = useStarredLocationsStore();
 
     const handleSelectLocation = useCallback(
-        name => {
+        (name: string) => {
             setSearchedLocation({ city: name });
             setLocationIsSelected(true);
             navigation.popTo(ROUTES.HOME);
         },
         [setSearchedLocation, setLocationIsSelected, navigation],
     );
-    const renderItem = useCallback(
+
+    const renderItem: ListRenderItem<Location> = useCallback(
         ({ item }) => {
             return (
                 <LocationRow

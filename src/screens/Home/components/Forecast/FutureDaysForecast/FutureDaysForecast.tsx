@@ -1,21 +1,21 @@
 import { useCallback } from 'react';
-import { FlatList, Image, SafeAreaView } from 'react-native';
+import { FlatList, Image, ListRenderItem, SafeAreaView } from 'react-native';
 import { Col, Grid } from 'react-native-easy-grid';
 
+import DataStatus from '@/components/DataStatus';
 import Text from '@/components/Text/PlainText.tsx';
 import { daysOfWeek } from '@/constants/calendarData';
 import useWeatherStore from '@/stores/weatherStore';
+import type { ForecastDay } from '@/types/types';
 
 import styles from './styles';
 
-const keyExtractor = item => item.date;
+const keyExtractor = (item: ForecastDay) => item.date;
 
 const FutureDaysForecast = () => {
-    const { forecast } = useWeatherStore();
+    const { loading, error, forecast } = useWeatherStore();
 
-    const weatherDataArray = forecast.forecast.forecastday;
-
-    const renderItem = useCallback(({ item }) => {
+    const renderItem: ListRenderItem<ForecastDay> = useCallback(({ item }) => {
         return (
             <Grid>
                 <Col size={40}>
@@ -45,12 +45,16 @@ const FutureDaysForecast = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <FlatList
-                data={weatherDataArray}
-                renderItem={renderItem}
-                keyExtractor={keyExtractor}
-                scrollEnabled={false}
-            />
+            <DataStatus loading={loading} error={error} data={forecast}>
+                {data => (
+                    <FlatList
+                        data={data.forecast.forecastday}
+                        renderItem={renderItem}
+                        keyExtractor={keyExtractor}
+                        scrollEnabled={false}
+                    />
+                )}
+            </DataStatus>
         </SafeAreaView>
     );
 };
