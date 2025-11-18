@@ -40,6 +40,10 @@ type Store = {
     starredLocations: Set<string>;
 };
 
+type PersistedState = {
+    starredLocations: Array<string>;
+};
+
 const useStarredLocationsStore = create<Store>()(
     persist(
         (set, get) => ({
@@ -64,10 +68,12 @@ const useStarredLocationsStore = create<Store>()(
             merge: (persistedState, currentState) => {
                 if (!persistedState) return currentState;
 
+                const typedState = persistedState as PersistedState;
+
                 return {
                     ...currentState,
-                    ...persistedState,
-                    starredLocations: new Set(persistedState.starredLocations),
+                    ...typedState,
+                    starredLocations: new Set(typedState.starredLocations),
                 };
             },
             partialize: state => ({

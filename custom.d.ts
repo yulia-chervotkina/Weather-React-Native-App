@@ -1,8 +1,3 @@
-// declare module '*.svg' {
-//     const content: string;
-//     export default content;
-// }
-
 declare module '*.svg' {
     import * as React from 'react';
     const content: React.FunctionComponent<
